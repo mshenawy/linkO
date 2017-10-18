@@ -1,0 +1,56 @@
+<div class="link row" style=" background: #f7f7f7;">
+  
+  <div class="post_vote">
+
+            <%= link_to like_link_comment_path(link , comment), method: :put,:remote => true, class: "post_upvote" do %>
+                <i class="fa fa-angle-up fa-2x" aria-hidden="true" ></i>
+              <% end %>
+          
+          <div class="post_points" id="score_<%= comment.id %>" title="<%= comment_score(comment) %>">
+              <%= number_to_human(comment_score(comment), :units => {:thousand => "K"},:format =>"%n%u",:precision => 4)  # => "500 K"
+               %>
+          </div>
+          
+            <%= link_to dislike_link_comment_path(link , comment), method: :put,:remote => true, class: "post_downvote" do %>
+                <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>          
+              <% end %>
+      </div>
+
+       <div class="postQuestion" >
+          <div class="post-title no-padding">
+             <p class="title">
+                <%= comment.body %>
+                <br>
+            </p>
+            <div>
+                <ul class="flat-list buttons">
+                    <li >
+                    <small class="author">بواسطة  
+                      <%= comment.user.name %>
+                      </small>
+                    </li>
+                    <li >
+                    <small class="author">منذ   
+                      <%= time_ago_in_words(comment.created_at ) %>
+                      </small>
+                    </li>
+                      <% if comment.user == current_user -%>
+                       <li>
+                       <small class="author">
+                         <%= link_to  "حذف", comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </small>
+                       </li> 
+
+                      <% else %>
+                      <li>
+                        <small>إبلاغ</small>
+                      </li>
+                      <% end %>
+                    
+                </ul>
+            </div>
+          </div>
+
+      </div>
+    
+  </div>

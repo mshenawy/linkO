@@ -1,0 +1,47 @@
+<div class="main">
+<%= form_for(@link) do |f| %>
+  <% if @link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% @link.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :"اﻟﺘﺼﻨﻴﻒ" , class: "required-field" %><br>
+    <%= f.collection_select  :category_id ,Category.all,:id,:name, {} , {class: "form-control"} %>
+  </div>
+  <div class="txtSmall margB25">
+اﺧﺘﺮ اﻟﺘﺼﻨﻴﻒ اﻟﻤﻨﺎﺳﺐ , اﺫا ﻛﺎﻥ اﻟﺘﺼﻨﻴﻒ ﻏﻴﺮ ﻣﻮﺟﻮﺩ ﻳﻤﻜﻨﻚ ﺇﺿﺎﻓﺔ ﺗﺼﻨﻴﻒ ﻣﻦ
+<%= link_to "ﻫﻨﺎ" ,new_category_path  %>.
+            </div>
+
+
+  <div class="form-group">
+    <%= f.label :"اﻟﻌﻨﻮاﻥ" , class: "required-field" %><br>
+    <%= f.text_field :title, class: "form-control"%>
+  </div>
+  <div class="txtSmall margB25">
+ًاﺧﺘﺮ ﻋﻨﻮاﻧﺎً ﻣﻨﺎﺳﺒﺎً ﻳﺼﻒ اﻟﻤﻮﺿﻮﻉ ﺑﺪﻗﻪ, ﺗﺄﻛﺪ اﻧﻪ ﻏﻴﺮ ﻣﻮﺟﻮﺩ ﻣﺴﺒﻘﺎ.
+            </div>
+
+  <div class="form-group">
+    <%= f.label :"ﻋﻨﻮاﻥ ﺇﻟﻜﺘﺮﻭﻧﻲ" , class: "required-field" %><br>
+    <%= f.text_field :url, class: "form-control" %>
+  </div>
+   <div class="txtSmall margB25">
+اﻟﺮاﺑﻂ اﻟﻤﺒﺎﺷﺮ 
+            </div>
+  <br>
+  <div class="form-group">
+    <%= f.submit "ﺃﺭﺳﻞ", class: "btn btn-lg btn-primary" %>
+  </div>
+
+<% end %>
+
+</div>

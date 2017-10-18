@@ -1,0 +1,12 @@
+<% if logged_in? %>
+<span><%= link_to gravatar_for(current_user, size: 100), current_user %></span>
+<br></br>
+<span><h1><%= current_user.name %></h1></span>
+<span><%= link_to "view my profile", current_user %></span>
+<span><%= pluralize(current_user.messages.count, "messages") %></span>
+<% else %>
+<%= link_to gravatar_for(@user, size: 50), @user %>
+<h1><%= @user.name %></h1>
+<h1><%= @user.email %></h1>
+
+<% end %>

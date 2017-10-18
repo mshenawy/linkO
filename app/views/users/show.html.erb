@@ -1,0 +1,80 @@
+
+<% provide(:title, @user.username) %>
+
+ <div class="menuarea">
+  <div class="spacer">
+   <%= form_tag({}, {:method => :get}) do %>
+   <span class="">ﺭﻭاﺑﻂ ﻣﻦ: </span>   
+   <% @people = [{"name"=>"اﻟﺴﺎﻋﻪ اﻟﻤﺎﺿﻴﺔ", "value"=>"hour"}, {"name"=>"اﻟﻴﻮﻡ اﻟﻤﺎﺿﻰ", "value"=>"day"}, {"name"=>"اﻻﺳﺒﻮﻉ اﻟﻤﺎﺿﻰ ", "value"=>"week"}, {"name"=>"اﻟﺸﻬﺮ اﻟﻤﺎﺿﻰ", "value"=>"month"}, {"name"=>"اﻟﻌﺎﻡ اﻟﻤﺎﺿﻰ", "value"=>"year"}, {"name"=>"اﻟﻜﻞ", "value"=>"all"}] %>
+        <% if params[:t].present? %>
+       <% @selected = params[:t]  %>
+       <% else %>
+        <% @selected = "month" %>  
+       <% end %>
+  <%= select_tag :t, options_for_select(@people.collect {|p| [ p['name'], p['value'] ] },@selected) %>
+ <% end %>
+  </div>
+ </div>
+
+
+<div class="ProfileTemplate__body">
+      <div class="ProfileTemplate__content">
+         <div class="itemsList">
+          <% @links.each do |link| %>
+            <%= render 'shared/link_row' ,link: link %>
+          <% end %>
+         </div>
+      </div>
+
+     <div class="ProfileTemplate__sidebar">
+         <div class="ProfileSidebar__titleContainer">
+            <div class="profileImg no-padding">
+              <%= image_tag(@user.image.url, alt: 'Image',class: "img-circle img-profile" ) if @user.image? %>
+            </div>
+            <span class="userName userOnline"><%= @user.username %></span>
+             <div class="contBlock">
+                <%= render 'follow_form' if logged_in? %>
+              </div> 
+              <div class="contBlock">
+                <i class="fa fa-star"> ﻧﻘﺎﻁ <%= @user.points.round %> </i>
+              </div>
+            <div class="contBlock">
+               <i class="fa fa-calendar"> ﺗﺎﺭﻳﺦ اﻟﺘﺴﺠﻴﻞ  <%= @user.created_at %> </i>
+            </div>
+          
+         </div> 
+     </div>
+</div>
+
+
+<script type="text/javascript">
+   $(document).ready(function() {
+        $('#t').on('change', function(event) {
+          var selected_id = $(this).val();
+          // alert(selected_id);
+          var url= window.location.href; 
+          var res = url.replace('?','&').split("&");
+          var newUrl = res[0];
+          var haveT = false;
+          for(var i =0 ; i<res.length ; i++){
+            var temp = res[i];
+              if(temp.startsWith("t=")){
+                temp = "t="+selected_id;
+                haveT = true;
+              }
+              if(i==0)
+              newUrl =temp;
+            else if (i==1) {
+              newUrl = newUrl+"?"+temp;
+            }else 
+            newUrl = newUrl+"&"+temp;
+          }
+          if(!haveT){
+            newUrl = newUrl+"?"+"t="+selected_id;
+          }
+          if(newUrl)
+             window.location = newUrl; // just redirect
+           })
+      });
+
+</script>

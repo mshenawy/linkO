@@ -1,0 +1,15 @@
+<%= form_for(@message) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Send new message..." , cols: "30", rows: "10" %>
+    
+    <%= hidden_field_tag(:user_id, @user.id ) %>
+
+  </div>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+ 	
+<% end %>
+
+<script type="text/javascript">
+ 
+</script>

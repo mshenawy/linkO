@@ -1,0 +1,65 @@
+<div class="link row">
+
+      <div class="post_vote">
+
+            <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote" do %>
+                <i class="fa fa-angle-up fa-2x" aria-hidden="true" ></i>
+              <% end %>
+          
+          <div class="post_points" title="<%= link_score(link) %>">
+              <%= number_to_human(link_score(link), :units => {:thousand => "K"},:format =>"%n%u",:precision => 4)  # => "500 K"
+               %>
+          </div>
+          
+            <%= link_to dislike_link_path(link), method: :put,:remote => true, class: "post_downvote" do %>
+                <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>          
+              <% end %>
+      </div>
+  
+       <div class="postQuestion">
+          <div class="post-title no-padding">
+             <p class="title">
+                <%= link_to link.title, link.url %>
+                <%= link_to URL_domain(link.url), link.url,:class =>"domain" %>
+                <br>
+            </p>
+            <div>
+                <ul class="flat-list buttons">
+                    <li >
+                    <small class="author">ﺑﻮاﺳﻄﺔ  
+                      <%= link_to link.user.name, link.user %>
+                      </small>
+                    </li>
+                    <li >
+                    <small class="author">ﻣﻨﺬ   
+                      <%= time_ago_in_words(link.created_at ) %>
+                      </small>
+                    </li>
+                    <li >
+                    <small class="author"> فى
+                      <%= link_to link.category.name, home_path(category: link.category.name) %>
+                      </small>
+                    </li>
+                    <li>
+                       <%= link_to link_comments(link) , link %>
+                    </li>
+                      <% if link.user == current_user %>
+                       <li>
+                       <small class="author">
+                         <%= link_to  "ﺣﺬﻑ", link, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        </small>
+                       </li> 
+
+                      <% else %>
+                      <li>
+                        <small>ﺇﺑﻼﻍ</small>
+                      </li>
+                      <% end %>
+                    
+                </ul>
+            </div>
+          </div>
+
+      </div>
+    
+  </div>

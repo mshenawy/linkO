@@ -1,0 +1,48 @@
+<div class="main">
+  <div class="mainTitle">
+    <h2>إنشاء حساب جديد </h2>
+  </div>
+  <div class="container-form">
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>There are <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved :</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :"الاسم" , class: "required-field" %><br>
+    <%= f.text_field :name,class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :"اسم المستخدم " , class: "required-field" %><br>
+    <%= f.text_field :username, class: "form-control"%>
+  </div>
+  
+  <div class="form-group">
+  <%= f.label :"البريد الإلكتروني " , class: "required-field" %>
+  <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+  <%= f.label :"كلمة المرور ", class: "required-field" %>
+  <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+  <%= f.label :" تأكيد كلمة المرور" , class: "required-field" %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-4 col-xs-12">
+    <%= f.submit "تسجيل ", class: "btn btn-lg btn-block btn-primary" %>
+  </div>
+
+<% end %>
+  </div>
+</div>

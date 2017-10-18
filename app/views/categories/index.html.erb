@@ -1,0 +1,27 @@
+
+<p id="notice"><%= notice %></p>
+
+<div class="mainTitle">
+  <h2>  اﻟﺘﺼﻨﻴﻔﺎﺕ </h2>
+</div>
+<div id="all_categories">
+
+    <% @categories.each do |category| %>
+    <div class="communityCard col-xs-4 ">
+      <h2 class="underline"> <%= category.name %>  
+        <% unless current_user?(@user) %>
+              <span class="pull-left">
+              <%= link_to content_tag(:i,nil, class: 'fa fa-trash-o'), category, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </span>
+        <% end %>
+      </h2>
+      <span>
+       <%= render 'categories/cat_follow_form' ,category: category   %>
+      </span>
+    </div>
+
+    <% end %> 
+
+
+</div>
+

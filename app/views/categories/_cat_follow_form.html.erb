@@ -1,0 +1,19 @@
+  <div id="follow_form" >
+  <% if @category.nil? %>
+    <% @category = category %>    
+  <% end %>
+  
+  <% if logged_in? %>
+    <% if current_user.isfollowingCat?(@category) %>
+      <%= render 'categories/cat_unfollow' %> 
+    <% else %>
+      <%= render 'categories/cat_follow'  %>
+    <% end %>
+  <% end %>
+  
+  <div id="stats">
+  <%= render 'shared/stats'  %>
+ </div>
+  </div>
+ 
+

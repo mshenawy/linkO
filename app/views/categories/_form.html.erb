@@ -1,0 +1,28 @@
+<div class="main container-fluid">
+<%= form_for(category) do |f| %>
+  <% if category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :"اﺳﻢ اﻟﺘﺼﻨﻴﻒ " , class: "required-field"%>
+    <%= f.text_field :name , class: "form-control"%>
+  </div>
+  <div class="txtSmall margB25">
+               اختر اسماً مناسباً للتصنيف, تأكد أنه غير موجود مسبقاً.
+  </div>
+
+ <div class="form-group">
+    <%= f.submit "اﻧﺸﺎء ﺗﺼﻨﻴﻒ ", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+</div>

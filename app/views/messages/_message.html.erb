@@ -1,0 +1,13 @@
+<li id="message-<%= message.id %>">
+  <span class="content">
+    <%= simple_format(message.content)  %> 
+    <%= simple_format(message.sender)  %> 
+  </span>
+  <span class="timestamp">
+    Recieved <%= time_ago_in_words(message.created_at) %> ago.
+     <% if current_user?(message.user) %>
+      <%= link_to "delete", message, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+</li>
