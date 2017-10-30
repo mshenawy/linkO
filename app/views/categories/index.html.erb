@@ -15,9 +15,32 @@
               </span>
         <% end %>
       </h2>
-      <span>
-       <%= render 'categories/cat_follow_form' ,category: category   %>
-      </span>
+      <% if logged_in? %>
+        <% unless current_user.isfollowingCat?(category) %>
+            <%= form_for(current_user.cat_followed_relationships.build) do |f| %>
+            <div><%= hidden_field_tag :following_id, category.id %></div>
+            <%= f.submit "Follow", class: "btn btn-primary" %>
+          <% end %>
+
+        <% else %>
+          <%= form_for(current_user.cat_followed_relationships.find_by(follower_id: current_user.id),
+                     html: { method: :delete }) do |f| %>
+          <%= f.submit "Unfollow", class: "btn" %>
+        <% end %>
+
+        <% end %>
+      <% end %>
+
+      <div id="stats">
+      <div class="stats pull-left">
+          <strong id="following" class="stat">
+            <%= category.follower.count %>
+          </strong>
+          متابع
+      </div>
+
+       </div>
+
     </div>
 
     <% end %> 
