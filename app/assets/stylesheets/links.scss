@@ -2,15 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#logo {
-    font-size: 26px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    padding: 15px 0;
-    a {
-        color: #2F363E;
-    }
+
+.bg-light {
+    background-color: #fefefe !important;
 }
 
 body {
@@ -18,10 +12,11 @@ body {
     font-size: 14px !important;
     line-height: 1.42857 !important;
     color: #888e99 !important;
-    background-color: #e9ebee !important;
+    background-color: #e6ecf0 !important;
 }
 #main_content {
     direction: rtl;
+    margin-top: 10px;
     #content {
         direction: rtl;
         float: right;
@@ -195,10 +190,10 @@ body {
     border-style: solid;
     border-width: 1px;
     font-size: small;
-    margin: 5px 305px 25px 0px;
-    padding: 5px 10px;
-    float: left;
-    width: 100%;
+    // margin: 5px 305px 25px 0px;
+    // padding: 5px 10px;
+    float: right;
+    width: 80%;
     direction: rtl;
 }
 .entry .buttons li a {
@@ -249,6 +244,24 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+.header{
+    /* border-bottom-width: thick; */
+    // border: black;
+    border-bottom: 1px solid #5f99cf;
+    background: 34af23;
+    background-color: #fefefe !important;
+}
+.following-list{
+    direction: rtl;
+    width: 100%;
+}
+.following-list-bar{
+    width: 100%;
+    margin-bottom: 2px;
+    background-color: #aae7a2 !important;
+    max-height: 30px !important;
+    border-bottom: 1px solid #5f99cf;
 }
 #headerBtns{
     border-bottom: 1px solid #5f99cf;
@@ -303,16 +316,18 @@ body {
     background: #fff;
     padding: 44px;
     margin: 20px;
+    border-radius: 10px;
 }
 .container--small {
-    max-width: 768px;
+    min-width: 80%;
 }
 .container-fluid {
-    max-width: 1170px;
-    padding: 18px;
+    min-width: 80%;    
     margin-left: auto;
     margin-right: auto;
-    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;   
+    padding-right: 30px;
     padding-left: 15px;
 }
 *, :after, :before {
@@ -342,17 +357,23 @@ body {
     font-family: "Noto Naskh Arabic", verdana, Times, serif;
     font-size: 12px;
     color: #828282;
-    float: right;
 }
 .margB25 {
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     float: right;
+    margin-right: 7px;
+
+}
+.form-group {
+    margin-bottom: 1rem;
+    margin-top: 30px;
 }
 .mainTitle {
     position: relative; 
     width: 100%;
     min-height: 1px; 
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    margin-top: 30px;
     padding-right: 15px;
 }
 
@@ -412,13 +433,19 @@ body {
 input:placeholder-shown {
   color: #828282 !important;
 }  
-.logo-img {
-     max-height: 65px; 
-    border: 0;
-    max-width: 100%; 
-    height: 68px;
-    width: 90px;    
-    margin-top: -19px;
+.logo-img-1 {
+    max-height: 30px;
+    margin-top: -10px;
+    margin-right: -15px;
+}
+.logo-img-2 {
+    max-height: 30px;
+    /* border: 0; */
+    /* max-width: 100%; */
+    /* height: 68px; */
+    /* width: 90px; */
+    margin-top: -10px;
+    margin-right: -15px;
 }
 img {
     vertical-align: middle;
@@ -597,6 +624,9 @@ h2, .h2 {
 .pull-left {
     float: left;
 }
+.pull-right {
+    float: right;
+}
 .communityCard {
     background-color: #fff;
     margin: 0px 7px 15px 7px;
@@ -636,6 +666,17 @@ h2, .h2 {
 }
 .navbar {
     position: relative;
-    min-height: 46px;
-    margin-bottom: 1px !important;
+    margin-bottom: 0px !important;
+}
+.nav-edit{
+    margin-right: -30px;
+    margin-left: 21px;
+}
+.nav-edit:before {
+ content: " << ";
+}
+#navbarNavDropdown .nav-link{
+
+font-size: 12px;
+font-weight: 700;
 }

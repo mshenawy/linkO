@@ -3,31 +3,40 @@
   <head >
         <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" type="image/png" href="/assets/images/linkO-icon.png">
+        <link rel="shortcut icon" type="image/png" href="/assets/images/linkO-logo.png">
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
   <body>
-
+    <div class="header">
      <%= render "layouts/header" %>
+      
+    </div>
      
-   <div id="headerBtns" >
-      <ul class="tabmenu" >  
-      <li>  <%= link_to "تحرير »" , categories_path() %> </li>
-         <li><%= link_to "الأشهر" ,links_path()  %></li>
-         <% if !current_user.nil? %>
+      <% if !current_user.nil? %>
            <% @categories = current_user.cat_followed %>
            <% else %>
            <% @categories = Category.all %>
          <% end %>
-         
-         <% @categories.each do |category| %>
-          <li><%= link_to category.name ,home_path(category: category.name)  %></li>
-       <% end %> 
-       </ul>
-    </div>
+         <div class="following-list">
+          <nav class="navbar navbar-expand-lg navbar-light  pull-right following-list-bar">
+               <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav " >  
+                <li class="nav-item">  
+                  <%= link_to_in_li "ﺗﺤﺮﻳﺮ", categories_path(), class: "nav-link nav-edit" %>
+                   </li>
+                   <li class="nav-item" ><%= link_to_in_li "اﻷﺷﻬﺮ" ,links_path() , class: "nav-link" %></li>
+                   <% @categories.each do |category| %>
+                    <li class="nav-item" ><%= link_to_in_li category.name ,home_path(category: category.name) , class: "nav-link" %></li>
+                 <% end %> 
+                 </ul>
+              </div>
+              <br>
+            </nav>
+        </div>
+    <br />
     <br>
     <div  id="main_content" class="container" style="width: 100%;" >      
         <% flash.each do |name, msg| %>
