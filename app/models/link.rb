@@ -5,4 +5,6 @@ class Link < ApplicationRecord
 	belongs_to :user
 	has_many :comments
 	belongs_to :category
+	mount_uploader :image, PictureUploader
+	validates :image , presence: false, allow_nil: true
 end

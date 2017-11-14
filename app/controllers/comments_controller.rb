@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_back }
       format.json { head :no_content }
     end
   end
@@ -59,7 +59,7 @@ class CommentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_back }
       format.json { head :no_content }
     end
   end

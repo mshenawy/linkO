@@ -7,17 +7,22 @@ class FollowsController < ApplicationController
     session[:selected_cat_id] =@category.id
     current_user.followCat(@category)
     respond_to do |format|
-      format.html { redirect_to @category }
+      format.html { redirect_to categories_path }
       format.js 
     end
   end
 
   def destroy
-    @category = Follow.find(params[:id]).following
+    if params[:following_id].nil?
+      @category = Follow.find(params[:id]).following  
+    else
+      @category = Category.find(params[:following_id])
+    end
+    
     current_user.unfollowCat(@category)
     session[:selected_cat_id] =@category.id
     respond_to do |format|
-      format.html { redirect_to @category }
+      format.html { redirect_to categories_path }
       format.js
     end
    end

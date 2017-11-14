@@ -112,8 +112,8 @@ class LinksController < ApplicationController
       
     end
     respond_to do |format|
-      format.html { redirect_to :back }
-      format.json { head :no_content }
+      format.html { redirect_to @link }
+      format.js 
     end
   end
 
@@ -128,8 +128,8 @@ class LinksController < ApplicationController
     end
     
      respond_to do |format|
-        format.html { redirect_to :back }
-        format.json { head :no_content }
+        format.html { redirect_to @link }
+        format.js 
       end
   end
 
@@ -137,7 +137,7 @@ class LinksController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:title, :url,:category_id)
+      params.require(:link).permit(:title, :url,:category_id,:image)
     end
 
     def correct_user

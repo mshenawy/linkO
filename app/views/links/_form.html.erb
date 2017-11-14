@@ -36,8 +36,13 @@
   </div>
    <div class="txtSmall margB25">
 اﻟﺮاﺑﻂ اﻟﻤﺒﺎﺷﺮ 
-            </div><br>
-  <br>
+   </div>
+   <div class="form-group">
+    <%= f.label :"إرفاق صورة " %>
+    <%= f.file_field :image, class: 'form-control' %>
+  </div>
+<br>
+
   <div class="form-group">
     <%= f.submit "ﺃﺭﺳﻞ", class: "btn btn-lg btn-primary" %>
   </div>

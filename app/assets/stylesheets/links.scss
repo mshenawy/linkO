@@ -31,6 +31,8 @@ body {
         margin: 0 0 15px;
         float: right;
         width: 100%;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
         .title {
             outline: none;
             margin-right: .4em;
@@ -108,10 +110,8 @@ body {
 .post_vote {
     position: relative;
     float: right;
-    width: 8.33333%;
+    width: 30px;
     min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
     padding-right: 0px;
     padding-left: 0px;
     margin-top: -12px;
@@ -120,6 +120,26 @@ body {
 .post_vote .fa {
     // color: #dd4814; 
     font-size: 35px;
+}
+.post_upvote {
+    color: #616770;
+    background-color: transparent;
+    text-decoration: none;
+}
+.post_downvote {
+    color: #616770;
+    background-color: transparent;
+    text-decoration: none;
+}
+.thumbnail {
+    float: left;
+    font-size: 0;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    margin-top: 0;
+    margin-left: 0;
+    overflow: hidden;
+    width: 70px;
 }
 .itemsList .listItem .post_vote {
     width: 6%;
