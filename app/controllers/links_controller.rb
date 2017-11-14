@@ -112,7 +112,7 @@ class LinksController < ApplicationController
       
     end
     respond_to do |format|
-      format.html { redirect_to @link }
+      format.html
       format.js 
     end
   end
@@ -128,7 +128,7 @@ class LinksController < ApplicationController
     end
     
      respond_to do |format|
-        format.html { redirect_to @link }
+        format.html 
         format.js 
       end
   end

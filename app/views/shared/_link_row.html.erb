@@ -1,6 +1,6 @@
 <div class="link row">
-    <form id="vote_form">
-      <div class="post_vote">
+    
+      <div  class="post_vote">
 
             <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote" do %>
                 <i class="fa fa-angle-up fa-2x" aria-hidden="true" ></i>
@@ -15,7 +15,7 @@
                 <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>          
               <% end %>
       </div>
-    </form>
+
        <div class="thumbnail ">
               <%= image_tag(link.image.url, alt: 'Image',class: "thumbnail" ) if link.image? %>
             </div>
