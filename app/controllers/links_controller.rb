@@ -103,14 +103,29 @@ class LinksController < ApplicationController
 
   def upvote
     @link = Link.find(params[:id])
-    @upvotes = @link.get_upvotes.size
-    @link.upvote_by current_user
-    if @upvotes != @link.get_upvotes.size 
+    # @upvotes = @link.get_upvotes.size
+    @liked = false
+    if (current_user.voted_as_when_voted_for @link).nil?  
+       @link.liked_by current_user
+       @liked = true
+     elsif (current_user.voted_as_when_voted_for @link) # => true, user liked it
+       @link.unliked_by current_user    
+       @liked = false
+      else
+        @link.liked_by current_user
+       @liked = true
+    end
+    
+    if @liked 
       @user = @link.user
       @user.points += 0.2 
-      @user.save    
-      
+      @user.save  
+    else
+      @user = @link.user
+      @user.points -= 0.2 
+      @user.save        
     end
+
     respond_to do |format|
       format.html
       format.js 
@@ -119,19 +134,35 @@ class LinksController < ApplicationController
 
   def downvote
     @link = Link.find(params[:id])
-    @downvotes = @link.get_downvotes.size
-    @link.downvote_from current_user
- if @downvotes != @link.get_downvotes.size 
+    # @upvotes = @link.get_upvotes.size
+    @disliked = false
+    if (current_user.voted_as_when_voted_for @link).nil?  
+       @link.disliked_by current_user
+       @disliked = true
+     elsif not(current_user.voted_as_when_voted_for @link) # => true, user liked it
+       @link.undisliked_by current_user    
+       @disliked = false
+     else
+       @link.disliked_by current_user
+       @disliked = true
+    end
+  
+    if @disliked 
       @user = @link.user
       @user.points -= 0.2 
-      @user.save    
+      @user.save  
+    else
+      @user = @link.user
+      @user.points += 0.2 
+      @user.save        
     end
-    
-     respond_to do |format|
-        format.html 
-        format.js 
-      end
+
+    respond_to do |format|
+      format.html
+      format.js 
+    end
   end
+
 
   private
    

@@ -21,7 +21,9 @@
       <div class="ProfileTemplate__content">
          <div class="itemsList">
           <% @links.each do |link| %>
-            <%= render 'shared/link_row' ,link: link %>
+          <div id="link_id_<%= link.id %>" >
+            <%= render 'shared/link_row' , link: link %>
+          </div>
           <% end %>
          </div>
       </div>

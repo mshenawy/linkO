@@ -114,7 +114,7 @@ body {
     min-height: 1px;
     padding-right: 0px;
     padding-left: 0px;
-    margin-top: -12px;
+    margin-top: -16px;
     text-align: center;
 }
 .post_vote .fa {
@@ -132,6 +132,9 @@ body {
     text-decoration: none;
 }
 .upvoted {
+    color: blue;
+  }
+.downvoted {
     color: blue;
   }
 
@@ -178,8 +181,8 @@ body {
     display: block;
     // width: 91.66667%;
     min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 .post-title {
     padding: 0 0 10px;

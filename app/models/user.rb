@@ -28,7 +28,7 @@ class User < ApplicationRecord
   has_many :cat_followed_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :cat_followed, through: :cat_followed_relationships, source: :following
   validates :image , presence: false, allow_nil: true
-
+  acts_as_voter
 
 
   def to_param

@@ -22,6 +22,10 @@ def active_class(link_path)
   current_page?(link_path) ? "active" : ""
 end
 
+def upvoted_class(bool)
+  bool? ? "upvoted" : ""
+end
+
 def link_to_in_li(body, url, html_options = {})
   active = "active" if current_page?(url)
   content_tag :li, class: active do

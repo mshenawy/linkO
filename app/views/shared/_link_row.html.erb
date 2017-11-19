@@ -1,8 +1,18 @@
 <div class="link row">
     
       <div  class="post_vote">
+                <% @a = "" %>
+                <% @b = "" %>
+          <% if (current_user.voted_as_when_voted_for link).nil? %>
+                <% @a = "" %>
+                <% @b = "" %>
+          <% elsif current_user.voted_as_when_voted_for link %>
+                <% @a =  "upvoted"   %>
+          <% else %>  
+              <% @b =  "downvoted"   %>
+          <% end %>
 
-            <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote" do %>
+            <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote "+@a  do %>
                 <i class="fa fa-angle-up fa-2x" aria-hidden="true" ></i>
               <% end %>
           
@@ -11,13 +21,14 @@
                %>
           </div>
           
-            <%= link_to dislike_link_path(link), method: :put,:remote => true, class: "post_downvote" do %>
+            <%= link_to dislike_link_path(link), method: :put,:remote => true, class: "post_downvote"+@b do %>
                 <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>          
               <% end %>
       </div>
 
        <div class="thumbnail ">
-              <%= image_tag(link.image.url, alt: 'Image',class: "thumbnail" ) if link.image? %>
+              <%= image_tag(link.image.url ,class: "thumbnail" ) if link.image? %>
+              <%= image_tag('default-image-link.png',  class: "thumbnail") unless link.image? %>
             </div>
 
        <div class="postQuestion">
@@ -27,7 +38,8 @@
                 <%= link_to URL_domain(link.url), link.url,:class =>"domain" %>
                 <br>
             </p>
-            <div>
+          </div>
+            <div class="">
                 <ul class="flat-list buttons">
                     <li >
                     <small class="author">ﺑﻮاﺳﻄﺔ  
@@ -62,7 +74,7 @@
                     
                 </ul>
             </div>
-          </div>
+           
 
       </div>
     
