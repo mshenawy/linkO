@@ -135,7 +135,7 @@ body {
     color: blue;
   }
 .downvoted {
-    color: blue;
+    color: #d56714;
   }
 
 .thumbnail {
@@ -344,6 +344,8 @@ body {
     padding: 44px;
     margin: 20px;
     border-radius: 10px;
+    // float: right;
+    text-align: right;
 }
 .container--small {
     min-width: 80%;
@@ -706,4 +708,19 @@ h2, .h2 {
 
 font-size: 12px;
 font-weight: 700;
+}
+
+.section-head {
+    padding-bottom: 190px;
+    border-bottom: 1px solid #ddd;
+}
+.section-title {
+    line-height: 1.24;
+    font-size: 34px !important;
+}
+.shell {
+    max-width: 960px;
+    margin: auto;
+    padding: 0 10px;
+
 }

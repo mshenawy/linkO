@@ -13,7 +13,7 @@
           <% end %>
 
             <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote "+@a  do %>
-                <i class="fa fa-angle-up fa-2x" aria-hidden="true" ></i>
+                <i class="fa fa-caret-up fa-2x" aria-hidden="true" ></i>
               <% end %>
           
           <div class="post_points" title="<%= link_score(link) %>">
@@ -21,8 +21,8 @@
                %>
           </div>
           
-            <%= link_to dislike_link_path(link), method: :put,:remote => true, class: "post_downvote"+@b do %>
-                <i class="fa fa-angle-down fa-2x" aria-hidden="true"></i>          
+            <%= link_to dislike_link_path(link), method: :put,:remote => true, class: "post_downvote "+@b do %>
+                <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>          
               <% end %>
       </div>
 
@@ -43,7 +43,7 @@
                 <ul class="flat-list buttons">
                     <li >
                     <small class="author">ﺑﻮاﺳﻄﺔ  
-                      <%= link_to link.user.name, link.user %>
+                      <%= link_to link.user.username, link.user %>
                       </small>
                     </li>
                     <li >
