@@ -7,7 +7,12 @@ module LinksHelper
   end
     # Returns domain from URL.
   def URL_domain(url)
-    URI.parse(url).host
+    begin
+      URI.parse(url).host
+    rescue => ex
+      nil
+    end
+    
   end
 
   # Returns the full title on a per-page basis.

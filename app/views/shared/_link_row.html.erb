@@ -1,15 +1,20 @@
 <div class="link row">
     
       <div  class="post_vote">
+        
+          
+        
                 <% @a = "" %>
                 <% @b = "" %>
-          <% if (current_user.voted_as_when_voted_for link).nil? %>
-                <% @a = "" %>
-                <% @b = "" %>
-          <% elsif current_user.voted_as_when_voted_for link %>
-                <% @a =  "upvoted"   %>
-          <% else %>  
-              <% @b =  "downvoted"   %>
+          <% unless current_user.nil? %>
+            <% if (current_user.voted_as_when_voted_for link).nil? %>
+                  <% @a = "" %>
+                  <% @b = "" %>
+            <% elsif current_user.voted_as_when_voted_for link %>
+                  <% @a =  "upvoted"   %>
+            <% else %>  
+                <% @b =  "downvoted"   %>
+            <% end %>
           <% end %>
 
             <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote "+@a  do %>
