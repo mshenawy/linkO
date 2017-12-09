@@ -1,0 +1,10 @@
+<% if current_page?(locale: :ar)  %>
+	<%= content_tag :li do %>
+	<%= link_to 'Switch to English', locale: :en %>
+		
+	<% end  %>
+		<% else %>
+	<%= content_tag :li do %>
+		<%= link_to 'Switch to ar', locale: :ar %>
+	<% end %>	
+<% end %>

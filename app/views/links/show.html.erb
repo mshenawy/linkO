@@ -11,7 +11,7 @@
 
 
 <h3 class="comments_title">
-   <h2>اﻟﺘﻌﻠﻴﻘﺎﺕ<%= @link.comments.count %> </h2> 
+   <h2><%= t(:label_comments) %> <%= @link.comments.count %> </h2> 
   
 </h3>
 <div class="commentBox">
@@ -20,7 +20,7 @@
             <%= f.text_area :body, class: "form-control editable" %>
           </div>
           <br>
-          <%= f.submit " ًﺃﺿﻒ ﺭﺩا", class: "btn btn-primary" %>
+          <%= f.submit t(:label_addComment) , class: "btn btn-primary" %>
           <% end %>
 </div>
 

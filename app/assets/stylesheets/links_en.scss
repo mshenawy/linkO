@@ -15,7 +15,7 @@ body {
     background-color: #e6ecf0 !important;
 }
 #main_content {
-    direction: rtl;
+    // direction: rtl;
     margin-top: 10px;
     #content {
         direction: rtl;
@@ -34,25 +34,9 @@ body {
         border: 1px solid transparent;
         border-radius: 0.25rem;
         .title {
-            outline: none;
-            margin-right: .4em;
-            padding: 0px;
-            overflow: hidden;
-            unicode-bidi: isolate;
-                margin-bottom: 0px;
+            float: left;
             a {
                     text-decoration: none;
-                .title {
-                    direction: rtl; 
-                    font-size: medium;
-                    font-weight: normal;
-                    margin-bottom: 1px;
-                    color: #0000ff;
-                    outline: none;
-                    margin-right: .4em;
-                    padding: 8px;
-                    overflow: hidden;
-                    }
             }
         }
         .domain {
@@ -109,7 +93,7 @@ body {
 }
 .post_vote {
     position: relative;
-    float: right;
+    float: left;
     width: 30px;
     min-height: 1px;
     padding-right: 0px;
@@ -176,10 +160,9 @@ body {
 }
 .postQuestion {
     position: relative;
-    float: right;
-    width: auto;
+    float: left;
     display: block;
-    // width: 91.66667%;
+    width: 80%;
     min-height: 1px;
     padding-left: 3px;
     padding-right: 3px;
@@ -362,18 +345,18 @@ body {
 *, :after, :before {
      box-sizing: border-box; 
 }
-.row {
+.row_link {
     margin-right: -15px;
     margin-left: -15px;
-    max-height: 115px;
+    min-height: 115px;
     margin-bottom: 30px;
     text-align: center;
 }
-.row:before, .row:after {
+.row_link:before, .row_link:after {
     content: " ";
     display: table;
 }
-.row:after {
+.row_link:after {
     clear: both;
 }
 .form-control {
@@ -618,7 +601,7 @@ img {
 }
 h1, h2, h3, h4, .h1, .h2, .h3, .h4, h1 *, h2 *, h3 *, h4 * {
     font-family: Calibri,Segoe,"Segoe UI",Verdana,Arial,sans-serif;
-    float: right;
+    // float: right;
 }
 label, .label, label *{
     float: right;

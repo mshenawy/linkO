@@ -1,8 +1,7 @@
-<% provide(:title, 'Edit user') %>
-<% provide(:title, 'المعلومات الشخصية') %>
-<% provide(:button_text, 'ﺣﻔﻆ اﻟﺘﻌﺪﻳﻼﺕ') %>
+<% provide(:title, t(:label_editAccount) ) %>
+<% provide(:button_text, t(:label_saveEdits) ) %>
 
 <div class="mainTitle">
-<h2>اﻟﻤﻌﻠﻮﻣﺎﺕ اﻟﺸﺨﺼﻴﺔ</h2>
+<h2><%= t(:label_unerInfo)  %></h2>
 </div>
 <%= render 'edit', user: @user %>

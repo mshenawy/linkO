@@ -13,15 +13,15 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :"اﺳﻢ اﻟﺘﺼﻨﻴﻒ " , class: "required-field"%>
+    <%= f.label t(:label_categoryName) , class: "required-field"%>
     <%= f.text_field :name , class: "form-control"%>
   </div>
   <div class="txtSmall margB25">
-               اختر اسماً مناسباً للتصنيف, تأكد أنه غير موجود مسبقاً.
+               <%= t(:under_labelCategoryName) %>
   </div>
 
  <div class="form-group">
-    <%= f.submit "اﻧﺸﺎء ﺗﺼﻨﻴﻒ ", class: "btn btn-primary" %>
+    <%= f.submit t(:label_buttonAddCategory) , class: "btn btn-primary" %>
   </div>
 
 <% end %>

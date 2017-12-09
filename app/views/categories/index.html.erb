@@ -2,19 +2,22 @@
 <p id="notice"><%= notice %></p>
 
 <div class="mainTitle">
-  <h2>  اﻟﺘﺼﻨﻴﻔﺎﺕ </h2>
+  <h2>  <%= t(:label_categories)  %> </h2>
 </div>
-<div id="all_categories">
 
-    <% @categories.each do |category| %>
-    <div class="communityCard col-xs-4 ">
-      <h2 class="underline"> <%= category.name %>  
-        <% unless current_user?(@user) %>
+<ul class="list-group">
+  <% @categories.each do |category| %>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="row ">
+      <label class="mr-sm-4" >
+      <% unless current_user?(@user) %>
               <span class="pull-left">
               <%= link_to content_tag(:i,nil, class: 'fa fa-trash-o'), category, method: :delete, data: { confirm: 'Are you sure?' } %>
               </span>
         <% end %>
-      </h2>
+      </label>
+      <label class="mr-sm-4" style="width: 150px;" ><%= category.name %> </label>
+
       <% if logged_in? %>
         <% unless current_user.isfollowingCat?(category) %>
             <%= form_for(current_user.cat_followed_relationships.build ) do |f| %>
@@ -32,20 +35,11 @@
         <% end %>
       <% end %>
 
-      <div id="stats">
-      <div class="stats pull-left">
-          <strong id="following" class="stat">
-            <%= category.follower.count %>
-          </strong>
-          متابع
-      </div>
-
-       </div>
-
     </div>
-
-    <% end %> 
-
-
-</div>
+    <span class="badge badge-primary badge-pill">
+      <%= category.follower.count %>
+    </span>
+  </li>
+ <% end %>
+</ul>
 

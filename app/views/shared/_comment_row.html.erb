@@ -25,25 +25,25 @@
             <div>
                 <ul class="flat-list buttons">
                     <li >
-                    <small class="author">بواسطة  
+                    <small class="author"><%= t(:label_by) %> 
                       <%= comment.user.name %>
                       </small>
                     </li>
                     <li >
-                    <small class="author">منذ   
+                    <small class="author"><%= t(:label_ago) %>   
                       <%= time_ago_in_words(comment.created_at ) %>
                       </small>
                     </li>
                       <% if comment.user == current_user -%>
                        <li>
                        <small class="author">
-                         <%= link_to  "حذف", comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+                         <%= link_to  t(:label_delete), comment, method: :delete, data: { confirm: 'Are you sure?' } %>
                         </small>
                        </li> 
 
                       <% else %>
                       <li>
-                        <small>إبلاغ</small>
+                        <small><%= t(:label_report) %></small>
                       </li>
                       <% end %>
                     

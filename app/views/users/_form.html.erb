@@ -1,6 +1,6 @@
 <div class="main">
   <div class="mainTitle">
-    <h2>إنشاء حساب جديد </h2>
+    <h2><%= t(:label_createNewAccount) %>  </h2>
   </div>
   <div class="container-form">
 <%= form_for(@user) do |f| %>
@@ -15,37 +15,37 @@
     </div>
   <% end %>
   <div class="form-group">
-    <%= f.label :"الاسم" , class: "required-field" %><br>
+    <%= f.label t(:label_name), class: "required-field" %><br>
     <%= f.text_field :name,class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :"اسم المستخدم " , class: "required-field" %><br>
+    <%= f.label t(:label_userName) , class: "required-field" %><br>
     <%= f.text_field :username, class: "form-control"%>
   </div>
   
   <div class="form-group">
-  <%= f.label :"البريد الإلكتروني " , class: "required-field" %>
+  <%= f.label t(:label_email) , class: "required-field" %>
   <%= f.email_field :email, class: 'form-control' %>
   </div>
   
   <div class="form-group">
-  <%= f.label :"كلمة المرور ", class: "required-field" %>
+  <%= f.label t(:label_password), class: "required-field" %>
   <%= f.password_field :password, class: 'form-control' %>
   </div>
   
   <div class="form-group">
-  <%= f.label :" تأكيد كلمة المرور" , class: "required-field" %>
+  <%= f.label t(:label_passwordConfirmation) , class: "required-field" %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :"صوره شخصيه" %>
+    <%= f.label t(:label_image) %>
     <%= f.file_field :image, class: 'form-control' %>
   </div>
 
 <div class="form-group">
-    <%= f.submit "تسجيل", class: "btn btn-lg btn-primary" %>
+    <%= f.submit t(:label_register), class: "btn btn-lg btn-primary" %>
   </div>
 
 
