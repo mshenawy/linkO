@@ -18,6 +18,14 @@ class LinksController < ApplicationController
     
   end
 
+   def search
+    if params[:search].present?
+      @links = Link.search(params[:search])
+    else
+      @links = Link.all
+    end
+  end
+
    def recent_posts
     @skip = 0
     @category = nil

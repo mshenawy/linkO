@@ -7,4 +7,5 @@ class Link < ApplicationRecord
 	belongs_to :category
 	mount_uploader :image, PictureUploader
 	validates :image , presence: false, allow_nil: true
+	searchkick
 end

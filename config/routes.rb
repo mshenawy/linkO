@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   end
 
    resources :links do
+    collection do
+      get 'search'
+    end
       member do
         put "like", to:    "links#upvote"
         put "dislike", to: "links#downvote"

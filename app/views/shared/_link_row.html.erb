@@ -71,11 +71,13 @@
                       <%= link_to link.category.name, home_path(category: link.category.name) %>
                       </small>
                     </li>
-                     <small >
+                     
                     <li class="list-inline-item">
+                      <small ><%= t(:label_in) %>
                        <%= link_to link_comments(link) , link %>
+                   </small>
                     </li>
-                  </small>
+                  
                       <% if link.user == current_user %>
                        <li class="list-inline-item">
                        <small >

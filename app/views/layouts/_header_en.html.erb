@@ -5,10 +5,17 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-   <form class="form-inline my-2 my-lg-0">
+  <%= form_tag search_links_path, method: :get, class: "form-inline my-2 my-lg-0", role: "search" do %>
+        <p>
+          <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2" %>
+          <%= submit_tag "Search", name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+        </p>
+      <% end %>
+
+   <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> -->
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
     <ul class="navbar-nav ">
 
@@ -18,12 +25,12 @@
 
       <% if logged_in? %>
       <li class="nav-item">
-      <%= link_to_in_li t(:label_headerNewLink), new_link_path , class: "nav-link fa  fa-link" %>
+      <%= link_to_in_li ' '+t(:label_headerNewLink), new_link_path , class: "nav-link fa  fa-link" %>
       </li>
-      <li class="nav-item ">
+     <!--  <li class="nav-item ">
        <%= link_to_in_li t(:label_headerNewCategory), new_category_path , class: "nav-link fa fa-th-list" %>
       </li>
-     
+       -->
        <% if current_user.admin %>
           <li class="nav-item">
        <%= link_to_in_li "Users", users_path , class: "nav-link" %>
@@ -41,16 +48,17 @@
          <%= link_to t(:label_logout), logout_path, method: :delete , class: "dropdown-item fa fa-sign-out"  %>
         </div>
       </li>
-      <li class="nav-item">
+       <li class="nav-item ">
+       
+      </li>
+
+    <li class="nav-item">
       <% if current_page?(locale: :ar)  %>
-        <%= content_tag :li do %>
-        <%= link_to t(:label_english), locale: :en %>
-        <% end  %>
+       <%= link_to_in_li ' '+t(:label_english),  { :locale=>'en' } , class: "nav-link fa fa-globe " %>
           <% else %>
-        <%= content_tag :li do %>
-          <%= link_to 'العربية' , locale: :ar %>
-        <% end %> 
+        <%= link_to_in_li ' '+t(:label_arabic),  { :locale=>'ar' } , class: "nav-link fa fa-globe " %>
       <% end %>
+    
       </li>
 
       <% else %>
