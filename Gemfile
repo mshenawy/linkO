@@ -80,4 +80,4 @@ gem 'record_tag_helper', '~> 1.0'
 gem "font-awesome-rails"
 
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
-gem 'searchkick'
+gem 'searchkick', '~> 0.8.3'
