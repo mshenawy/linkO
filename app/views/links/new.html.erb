@@ -1,11 +1,12 @@
 
-<div id="link-desc" class="infobar">
- <h2>
-<%= t :label_newLinkBeforeTitle %>
-</h2>
+<div id="link-desc" class="alert alert-info">
+	 <h5>
+	<%= t :label_newLinkBeforeTitle %>
+	</h5>
 </div>
-<br>
+	<br>
 <div class="mainTitle">
-<h2><%=t :label_newLinkTitle %></h2>
+	<h4><%=t :label_newLinkTitle %></h4>
 </div>
+
 <%= render 'form', link: @link %>

@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       member do
         put "like", to:    "links#upvote"
         put "dislike", to: "links#downvote"
+        put "notLogin", to:    "links#vote_notLogin"
+        
       end
     resources :comments do
       member do

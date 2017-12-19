@@ -1,86 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head >
-        <title><%= full_title(yield(:title)) %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" type="image/png" href="/assets/images/linkO-logo.png">
-    <%= favicon_link_tag %>
-    <%= csrf_meta_tags %>
-<%= stylesheet_link_tag "application_#{I18n.locale}", media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  </head>
-  <body>
-    <div class="header">
-      <% if current_page?(locale: :ar)  %>
-       <%= render "layouts/header" %>
-      <% else %>
-       <%= render "layouts/header_en" %>
-      <% end %>
-     
-    </div>
-     <% @maxFollowList = 9 %>
-      <% if !current_user.nil? %>
-           <% @categories = current_user.cat_followed %>
-           <% else %>
-           <% @categories = Category.all %>
-         <% end %>
-         <div class="following-list">
-          <nav id="following-list-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav mr-auto" id="topMenuListId">
-                
-                 <%= link_to_in_li '' , categories_path(), class: "nav-link nav-edit fa fa-pencil-square-o" %>
-                
-                  <%= link_to_in_li t(:label_popular)  ,links_path() , class: "nav-link" %>
-                
-                <% @categories.each_with_index  do |category, index| %>
-                <% if index < @maxFollowList %>
-                  <%= link_to_in_li category.name ,home_path(category: category.name) , class: "nav-link" %>
-                <% end %>
-                    
-                 <% end %> 
+<head >
+  <title><%= full_title(yield(:title)) %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/png" href="/assets/images/linkO-logo.png">
+  <%= favicon_link_tag %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application_#{I18n.locale}", media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body>
+  <div class="header">
+    <% if current_page?(locale: :ar)  %>
+    <%= render "layouts/header" %>
+    <% else %>
+    <%= render "layouts/header_en" %>
+    <% end %>
+    
+  </div>
+  
+  <div class="following-list">
 
-                  <% if @categories.length > @maxFollowList %>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-                    <div class="dropdown-menu">
-                      <% @categories.each_with_index  do |category, index| %>
-                      <% if index >= @maxFollowList %>
-                        <%= link_to category.name ,home_path(category: category.name) , class: "dropdown-item" %>
-                      <% end %>
-                       <% end %> 
-                      <!-- <div class="dropdown-divider"></div> -->
-                      
-                    </div>
-                  </li>
-              <% end %>
-              </ul>
-              
-            </div>
-          </nav>
+    <% @maxFollowList = 13 %>
+    <% if !current_user.nil? %>
+    <% @categories = current_user.cat_followed %>
+    <% else %>
+    <% @categories = Category.all %>
+    <% end %>
+    <nav id="following-list-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto edit-align" id="topMenuListId">
+          
+         <%= link_to_in_li '' , categories_path(), class: "nav-link nav-edit fa fa-pencil-square-o" %>
          
-        </div>
-    <br />
-    <br>
-    <div  id="main_content" class="container" style="width: 100%;" >      
-        <% flash.each do |name, msg| %>
-           <%= content_tag(:div, msg, class: "alert alert-info") %>
-        <% end %>
-      
-        <%= yield %>
-      
-      <%= debug(params) if Rails.env.development? %>
-    </div>
- 
+         <%= link_to_in_li t(:label_popular)  ,links_path() , class: "nav-link" %>
+         
+         <% @categories.each_with_index  do |category, index| %>
+         <% if index < @maxFollowList %>
+         <%= link_to_in_li category.name ,home_path(category: category.name) , class: "nav-link" %>
+         <% end %>
+         
+         <% end %> 
 
-  </body>
+         <% if @categories.length > @maxFollowList %>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <% @categories.each_with_index  do |category, index| %>
+            <% if index >= @maxFollowList %>
+            <%= link_to category.name ,home_path(category: category.name) , class: "dropdown-item" %>
+            <% end %>
+            <% end %> 
+            <!-- <div class="dropdown-divider"></div> -->
+            
+          </div>
+        </li>
+        <% end %>
+      </ul>
+      
+    </div>
+  </nav>
+  
+</div>
+<br />
+<br>
+<div class="container"  >      
+  <% flash.each do |name, msg| %>
+  <%= content_tag(:div, msg, class: "alert alert-info") %>
+  <% end %>
+  
+  <%= yield %>
+  
+  <%= debug(params) if Rails.env.development? %>
+</div>
+
+
+</body>
 </html>
 
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function() {
   // $("#topMenuListId  li").on('click', function(e) {
   //     alert('change has been made');
 
@@ -93,14 +95,14 @@ $(document).ready(function() {
   // {
   //  $('#dropdownMenu2').hide(); 
   // }
-   $('#topMenuListId li').each(function (i) {
+  $('#topMenuListId li').each(function (i) {
 
-        var index = $(this).index();
-        var text = $(this).text();
-        var value = $(this).attr('value');
+    var index = $(this).index();
+    var text = $(this).text();
+    var value = $(this).attr('value');
         // alert('Index is: ' + index + ' and text is ' + text + ' and Value ' + value);
-    }); 
+      }); 
 
- });
+});
 
 </script>

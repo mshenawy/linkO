@@ -1,4 +1,4 @@
-<div class="main container-fluid">
+<div class="main">
 <%= form_for(category) do |f| %>
   <% if category.errors.any? %>
     <div id="error_explanation">
@@ -11,7 +11,7 @@
       </ul>
     </div>
   <% end %>
-
+<form>
   <div class="form-group">
     <%= f.label t(:label_categoryName) , class: "required-field"%>
     <%= f.text_field :name , class: "form-control"%>
@@ -20,9 +20,20 @@
                <%= t(:under_labelCategoryName) %>
   </div>
 
+   <div class="form-group">
+    <%= f.label t(:label_about) %>
+    <%= f.text_field :about , class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label t(:label_attachImage) %>
+    <%= f.file_field :image , class: "form-control"%>
+  </div>
+   
+
  <div class="form-group">
     <%= f.submit t(:label_buttonAddCategory) , class: "btn btn-primary" %>
   </div>
-
+</form>
 <% end %>
 </div>

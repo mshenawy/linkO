@@ -49,8 +49,10 @@
 
       <% else %>
       <li class="nav-item dropdown"><%= link_to t(:label_NewAccount), signup_path , class: "nav-link fa fa-user-plus"  %></li>
-          <li class="nav-item dropdown"><%= link_to t(:label_login), login_path , class: "nav-link fa fa-sign-in"  %></li>
-        <% end %>
+      <li class="nav-item dropdown">
+        <%= link_to t(:label_login), login_path , class: "nav-link fa fa-sign-in"  %>
+        </li>
+      <% end %>
     </ul>
     </div>
      <a class="navbar-brand" href="/" id="logo" >

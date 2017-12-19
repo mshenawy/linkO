@@ -1,8 +1,8 @@
 class LinksController < ApplicationController
   # before_action :set_link, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, except: [:index , :show]
+  before_action :logged_in_user, except: [:index , :show,:vote_notLogin ]
   before_action :correct_user,   only: [:destroy , :update]
-
+  before_action :logged_in_user_vote, only: [:vote_notLogin ]
   # GET /links
   # GET /links.json
   def index
@@ -108,8 +108,12 @@ class LinksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def vote_notLogin
+    
+  end
 
   def upvote
+# check if user login
     @link = Link.find(params[:id])
     # @upvotes = @link.get_upvotes.size
     @liked = false
@@ -132,12 +136,11 @@ class LinksController < ApplicationController
       @user = @link.user
       @user.points -= 0.2 
       @user.save        
-    end
-
+    end 
     respond_to do |format|
-      format.html
-      format.js 
-    end
+          format.html
+          format.js 
+        end
   end
 
   def downvote
@@ -186,5 +189,15 @@ class LinksController < ApplicationController
 
     def find_link
       @link = Link.find(params[:id])
+    end
+
+    # Confirms a logged-in user.
+    def logged_in_user_vote
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to root_url
+
+      end
     end
 end

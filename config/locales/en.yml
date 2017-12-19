@@ -252,8 +252,8 @@ en:
   label_headerAccount: Account
   label_headerAccountEdit: Account Edit
   label_logout:  Logout
-  label_NewAccount: New Account
-  label_login: Login
+  label_NewAccount: Register
+  label_login: Sign In
   label_name: Name
   label_userName: Username
   label_email: Email
@@ -266,10 +266,10 @@ en:
   label_in: in
   label_delete: delete
   label_report: report
-  label_register: register
+  label_register: Register
   label_password: Password
   label_passwordConfirmation: Password Confirmation
-  label_createNewAccount: Create New Account
+  label_createNewAccount: Sign Up 
   label_comments: Comments
   label_addComment: Add Comment
   label_edit: Edit
@@ -278,3 +278,6 @@ en:
   label_english: English
   label_categories: Categories 
   label_arabic: العربية 
+  label_forgotPassword: Forgot password
+  label_about: About
+  label_home: Home

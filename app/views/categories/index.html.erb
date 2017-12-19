@@ -1,6 +1,21 @@
 
 <p id="notice"><%= notice %></p>
 
+<% provide(:title, t(:label_categories)  ) %>
+    
+    <div class="categoriesList">
+          <% @categories.each do |category| %>
+          <div id="category_id_<%= category.id %>" >
+            <%= render 'shared/category_row' ,category: category %>
+            </div>
+          <% end %>
+    </div>
+
+
+
+
+
+
 <div class="mainTitle">
   <h2>  <%= t(:label_categories)  %> </h2>
 </div>
