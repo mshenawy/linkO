@@ -6,53 +6,47 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
- <%= form_tag search_links_path, method: :get, class: "form-inline  my-lg mr-lg ", role: "search" do %>
-       <p>
-        <div class="input-group input-group-sm">
-          <%= text_field_tag :search, params[:search], class: "form-control" , placeholder: "Search LinkO" %>
-          <span class="input-group-btn ">
-            <%= button_tag  ' ', name: nil, class: "btn btn-secondary " do %>
-            <i class="fa fa-search" aria-hidden="true"></i>
-            <% end %>
-          </span>
-        </div>
-      </p>        
 
-      <button class="btn btn-success btn-sm mx-2" type="button">Add Link</button>
-      
-      <!-- <select class="custom-select">
-        <option selected>
-          <%= link_to_in_li ' '+t(:label_arabic),  { :locale=>'ar' } , class: "nav-link fa fa-globe headerFont" %>
-        </option>
-        <option value="1">
-          <%= link_to_in_li ' '+t(:label_english),  { :locale=>'en' } , class: "nav-link fa fa-globe headerFont" %>
-        </option>
-        
-      </select> -->
+  <%= form_tag search_links_path, method: :get, class: "form-inline col-sm-6 ", role: "search" do %>
+  <p>
+    <div class="input-group input-group-sm col-sm-8 ">
+      <%= text_field_tag :search, params[:search], class: "form-control" , placeholder: "Search LinkO" %>
+      <span class="input-group-btn ">
+        <%= button_tag  ' ', name: nil, class: "btn btn-secondary " do %>
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <% end %>
+      </span>
+    </div>
+  </p>        
 
-      <% end %>
+ <!--  <button class="btn btn-success btn-sm mx-1" type="button"
+  data-toggle="modal" data-target="#exampleModal">Add Link</button>
+-->
+<%= link_to "Add Link", new_link_path ,class: "btn btn-success btn-sm mx-1"  %> 
+
+<% end %>
 
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-    <ul class="navbar-nav ">
+<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+  <ul class="navbar-nav ">
 
-      <li class="nav-item ">
-        <p>
+    <li class="nav-item ">
+      <p>
 
-         <%= link_to_in_li ' '+t(:label_home) , root_path , class: "nav-link fa fa-newspaper-o headerFont" %>     
+       <%= link_to_in_li ' '+t(:label_home) , root_path , class: "nav-link fa fa-newspaper-o headerFont" %>     
 
-       </p>
-       
-     </li>
+     </p>
 
-     <li class="nav-item">
-       <%= link_to_in_li ' '+t(:label_headerAbout) , about_path , class: "nav-link fa fa-question-circle headerFont" %>
-     </li>
+   </li>
 
-     <% if logged_in? %>
-     <li class="nav-item">
-      <%= link_to_in_li ' '+t(:label_headerNewLink), new_link_path , class: "nav-link fa  fa-link headerFont" %>
-    </li>
+   <li class="nav-item">
+     <%= link_to_in_li ' '+t(:label_headerAbout) , about_path , class: "nav-link fa fa-question-circle headerFont" %>
+   </li>
+
+   <% if logged_in? %>
+  <!--  <li class="nav-item">
+    <%= link_to_in_li ' '+t(:label_headerNewLink), new_link_path , class: "nav-link fa  fa-link headerFont" %>
+  </li> -->
      <!--  <li class="nav-item ">
        <%= link_to_in_li t(:label_headerNewCategory), new_category_path , class: "nav-link fa fa-th-list" %>
       </li>
@@ -110,5 +104,6 @@
 
 
 
-    </div>
-  </nav>
+     </div>
+   </nav>
+

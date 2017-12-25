@@ -2,7 +2,9 @@
 <html>
 <head >
   <title><%= full_title(yield(:title)) %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <link rel="shortcut icon" type="image/png" href="/assets/images/linkO-logo.png">
   <%= favicon_link_tag %>
   <%= csrf_meta_tags %>
@@ -16,9 +18,9 @@
     <% else %>
     <%= render "layouts/header_en" %>
     <% end %>
-    
+
   </div>
-  
+
   <div class="following-list">
 
     <% @maxFollowList = 13 %>
@@ -33,16 +35,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto edit-align" id="topMenuListId">
-          
+
          <%= link_to_in_li '' , categories_path(), class: "nav-link nav-edit fa fa-pencil-square-o" %>
-         
+
          <%= link_to_in_li t(:label_popular)  ,links_path() , class: "nav-link" %>
-         
+
          <% @categories.each_with_index  do |category, index| %>
          <% if index < @maxFollowList %>
          <%= link_to_in_li category.name ,home_path(category: category.name) , class: "nav-link" %>
          <% end %>
-         
+
          <% end %> 
 
          <% if @categories.length > @maxFollowList %>
@@ -55,15 +57,15 @@
             <% end %>
             <% end %> 
             <!-- <div class="dropdown-divider"></div> -->
-            
+
           </div>
         </li>
         <% end %>
       </ul>
-      
+
     </div>
   </nav>
-  
+
 </div>
 <br />
 <br>
@@ -71,13 +73,11 @@
   <% flash.each do |name, msg| %>
   <%= content_tag(:div, msg, class: "alert alert-info") %>
   <% end %>
-  
+
   <%= yield %>
-  
-  <%= debug(params) if Rails.env.development? %>
+
+  <!-- <%= debug(params) if Rails.env.development? %> -->
 </div>
-
-
 </body>
 </html>
 

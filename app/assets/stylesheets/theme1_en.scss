@@ -1,14 +1,49 @@
 
 body{
-background: #fafafa;;
-font-family: 'DroidArabicKufi' !important; 
-}
-a {
-    text-decoration: none
+    background: #fafafa;;
+    font-family: 'DroidArabicKufi' !important; 
+    height: 100%;
+    word-wrap: break-word;
+    color: #333;
+    // font-size: 16px;
+    overflow-y: auto;
+    overflow-x: auto;
 }
 
+.link_name {
+a {
+    text-decoration: none;
+    color: #333;
+}
+a:hover {
+    color: #333;
+    text-decoration: underline;
+}    
+}
+.topic_name {
+    // font-family: Georgia,Times,"Times New Roman","Hiragino Kaku Gothic Pro","Meiryo",serif;
+    font-weight: bolder;
+    line-height: 1.5;
+    color: #262626;
+    font-size: 23px;
+}
+.type_serif_title_medium {
+    // font-family: Georgia,Times,"Times New Roman","Hiragino Kaku Gothic Pro","Meiryo",serif;
+    font-weight: bold;
+    line-height: 1.3;
+    color: #262626;
+    font-size: 18px;
+}
+div {
+    display: block;
+}
+.img-fluid {
+    max-width: 35%;
+    height: auto;
+}
 .card{
 	margin: 1rem;
+    min-width: 50rem;
 }
 .voteTable{
 	// border-collapse: collapse; border: 1px solid #839E99;
@@ -23,11 +58,15 @@ a {
 }
 
 .voteTable th {
-height: 100%;
+    height: 100%;
 }
 .imageVoteTd{
 	vertical-align: middle !important; 
 	padding:0 !important; 
+}
+.takeParentWidth{
+    box-sizing: border-box;
+   width: 100%;
 }
 .customRounded{
 	width: 20%;
@@ -43,12 +82,12 @@ height: 100%;
     vertical-align: middle !important; 
 }
 .domain
- {
-            color: #888;
-            font-size: x-small;
-            white-space: nowrap;
- }
- .table-responsive {
+{
+    color: #888;
+    font-size: small;
+    white-space: nowrap;
+}
+.table-responsive {
     overflow-x: initial;
 }
 .localeColor #localeColor {
@@ -56,7 +95,7 @@ height: 100%;
 	background-color: red;
 }
 .space:before{
-content: " ";
+    content: " ";
 }
 .required-field:after {
     content: "*";
@@ -78,6 +117,10 @@ content: " ";
     margin-bottom: 5px;
     margin-right: 7px;
 
+}
+.small {
+    font-size: 90%;
+    font-weight: 400;
 }
 
 .infobar {
@@ -160,7 +203,7 @@ content: " ";
     text-align: center;
     line-height: 300%;
 }
-    
+
 .omb_login .omb_socialButtons a {
     color: white; // In yourUse @body-bg 
     opacity:0.9;
@@ -204,22 +247,22 @@ content: " ";
     width: 2em;
 }
 .omb_login .input-group {
-margin-bottom: .8rem;
+    margin-bottom: .8rem;
 }
 .omb_login .omb_loginForm  .help-block {
     color: red;
 }
 .omb_login .btn {
-margin-bottom: .8rem;
+    margin-bottom: .8rem;
 }
-    
+
 @media (min-width: 768px) {
     .omb_login .omb_forgotPwd {
         text-align: right;
         margin-top:10px;
     }       
 }
-    
+
 .colorgraph {
   height: 5px;
   border-top: 0;
@@ -232,114 +275,11 @@ margin-bottom: .8rem;
 }
 //..... login end .....
 
-// bootstrap top menu styles start
-// $bgDefault      : #258844;
-// $bgHighlight    : #b8d8b7;
-// $colDefault     : #92ba85;
-// $colHighlight   : #6d9069;
-// $dropDown       : true;
-// .navbar {
-//   background-color: $bgDefault;
-//   max-height: 3.5rem;
-//   .navbar-brand {
-//     color: $colDefault;
-//     &:hover, &:focus {
-//       color: $colHighlight; }}
-//   .navbar-text {
-//     color: $colDefault; }
-//   .navbar-nav {
-//     .nav-link {
-//       color: $colDefault;
-//       border-radius: .25rem;
-//       margin: 0 0.25em;
-//       &:not(.disabled) {
-//         &:hover, &:focus {
-//           color: $colHighlight; }}}
-//     @if ($dropDown) {
-//       .dropdown-menu {
-//         background-color: $bgDefault;
-//         border-color: $bgHighlight;
-//         .dropdown-item {
-//           color: $colDefault;
-//           &:hover, &:focus, &.active {
-//             color: $colHighlight;
-//             background-color: $bgHighlight; }}
-//         .dropdown-divider {
-//           border-top-color: $bgHighlight; }}}
-//     .nav-item.active, .nav-item.show {
-//       .nav-link, .nav-link:hover, .nav-link:focus {
-//         color: $colHighlight;
-//         background-color: $bgHighlight; }}}
-//   .navbar-toggle {
-//     border-color: $bgHighlight;
-//     &:hover, &:focus {
-//       background-color: $bgHighlight; }
-//     .navbar-toggler-icon {
-//       color: $colDefault; }}
-//   .navbar-collapse,
-//   .navbar-form {
-//     border-color: $colDefault; }
-//   .navbar-link {
-//     color: $colDefault;
-//     &:hover {
-//       color: $colHighlight; }}}
-// @media (max-width: 575px) {
-//   .navbar-expend-sm .navbar-nav .show .dropdown-menu {
-//     .dropdown-item {
-//       color: $colDefault;
-//       &:hover, &:focus {
-//         color: $colHighlight; }}
-//     .dropdown-item.active {
-//       color: $colHighlight;
-//       background-color: $bgHighlight; }}}
-// @media (max-width: 767px) {
-//   .navbar-expend-md .navbar-nav .show .dropdown-menu {
-//     .dropdown-item {
-//       color: $colDefault;
-//       &:hover, &:focus {
-//         color: $colHighlight; }}
-//     .dropdown-item.active {
-//       color: $colHighlight;
-//       background-color: $bgHighlight; }}}
-// @media (max-width: 991px) {
-//   .navbar-expend-lg .navbar-nav .show .dropdown-menu {
-//     .dropdown-item {
-//       color: $colDefault;
-//       &:hover, &:focus {
-//         color: $colHighlight; }}
-//     .dropdown-item.active {
-//       color: $colHighlight;
-//       background-color: $bgHighlight; }}}
-// @media (max-width: 1199px) {
-//   .navbar-expend-xl .navbar-nav .show .dropdown-menu {
-//     .dropdown-item {
-//       color: $colDefault;
-//       &:hover, &:focus {
-//         color: $colHighlight; }}
-//     .dropdown-item.active {
-//       color: $colHighlight;
-//       background-color: $bgHighlight; }}}
-// .navbar-expend .navbar-nav .show .dropdown-menu {
-//   .dropdown-item {
-//     color: $colDefault;
-//     &:hover, &:focus {
-//       color: $colHighlight; }}
-//   .dropdown-item.active {
-//     color: $colHighlight;
-//     background-color: $bgHighlight; }}
-// end 
-// #li .active{
-// color: #6d9069;
-// }
-// .navbar-light .navbar-nav .nav-link {
-//     color: #28a745;
-// }
-
 .mb-lg-0, .my-lg-0 {
     margin-bottom: -15px !important;
 }
 .edit-align{
-        margin-top: .7%;
+    margin-top: .7%;
 }
 
 .wrapper {
@@ -376,16 +316,19 @@ input.icon::-webkit-input-placeholder {
     font-size: larger;
 }
 .logoImg{
-    max-width: 35px;
+    max-width: 37px;
 }
 
 .header{
-.navbar-light .navbar-nav .active > .nav-link {
-    color: #28a745;
-}
-.navbar-light .navbar-nav .nav-link:hover {
-    color: #28a745;
-}
+    .navbar-light .navbar-nav .active > .nav-link {
+        color: #28a745;
+    }
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #28a745;
+    }
+    .navbar{
+        border-bottom: 1px solid #27b97c;
+    }
 
 }
 /* change the background color */
@@ -423,3 +366,53 @@ input.icon::-webkit-input-placeholder {
     margin-top: 4rem;
 }
 /* folloing list end */
+
+/* votes styles start */
+
+.post_upvote {
+    color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+    text-decoration: none;
+}
+.post_downvote {
+    color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+    text-decoration: none;
+}
+.upvoted {
+    color: #27b97c;
+}
+.downvoted {
+    color: #d56714;
+}
+
+/* votes styles end */
+
+.custom-img{
+    width: inherit;
+}
+
+// .overflow-cl{
+//             overflow: auto;
+//             white-space:nowrap;
+//         }
+
+// .overflow-cl {             
+//             display:inline;
+//         }
+ul{
+    list-style-type:none;
+    white-space:nowrap;
+    overflow-x:auto;
+}
+
+li{
+    display:inline;
+}
+
+.img-fluid {
+    max-width: 100%;
+    // min-width: 50%;
+    // margin-left: -16px;
+    height: auto;
+}

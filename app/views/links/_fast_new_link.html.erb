@@ -1,0 +1,14 @@
+
+<div id="link-desc" class="alert alert-info">
+	 <h5>
+	<%= t :label_newLinkBeforeTitle %>
+	</h5>
+</div>
+	<br>
+<div class="mainTitle">
+	<h4><%=t :label_newLinkTitle %></h4>
+</div>
+<%
+@link = current_user.links.build
+%>
+<%= render 'form', link: @link %>
