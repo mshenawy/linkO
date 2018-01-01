@@ -82,8 +82,6 @@ class CategoriesController < ApplicationController
 
     def correct_user
       @category = current_user.categories.find_by(id: params[:id])
-      p "selected catg : "
-      p  @category.name
       if @category.nil?
         flash_message :danger ,  "Not authorized to edit this link" 
         redirect_to @category

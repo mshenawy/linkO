@@ -30,11 +30,11 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
-       <label for="image"><%= t(:label_image) %></label>
-       <%= f.file_field :image, class: 'form-control', name: 'Confirm Password' %>
-     </div>
-     <div class="row">
+     <div class="form-group">
+      <%= f.label t(:label_image) %>
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
+    <div class="row">
       <div class="col-xs-4 col-sm-3 col-md-3">
         <span class="button-checkbox">
           <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
@@ -70,7 +70,7 @@
       <div class="modal-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>

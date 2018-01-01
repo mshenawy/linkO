@@ -1,6 +1,13 @@
-<h1>Editing Link</h1>
+<% provide(:title, t(:label_editLinkTitle) ) %>
 
-<%= render 'form', link: @link %>
-
-<%= link_to 'Show', @link %> |
-<%= link_to 'Back', links_path %>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col-12 col-md-8">
+			<div class="">
+				<h3><%=t :label_editLinkTitle %> </h3>
+				<hr class="colorgraph">
+				<%= render 'form', link: @link %>
+			</div>
+		</div>
+	</div>
+</div>

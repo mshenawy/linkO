@@ -94,20 +94,21 @@ end
 def update
   respond_to do |format|
     if @link.update(link_params)
-     flash_message :success ,  'Link was successfully updated.';
-     format.html { redirect_to @link  }
-     format.json { render :show, status: :ok, location: @link }
-   else
-    if @link.errors.any? 
-     @link.errors.full_messages.each do |msg| 
-      flash_message :danger ,  msg 
+      flash_message :success ,  "Link was successfully updated." 
+      format.html { redirect_to @link }
+      format.json { render :show, status: :ok, location: @link }
+    else
+      if @link.errors.any? 
+        @link.errors.full_messages.each do |msg| 
+          flash_message :danger ,  msg 
+        end
+      end
+      format.html { render :edit }
+      format.json { render json: @link.errors, status: :unprocessable_entity }
     end
   end
-  format.html { render :edit }
-  format.json { render json: @link.errors, status: :unprocessable_entity }
 end
-end
-end
+
 
 def destroy
   @link.destroy
@@ -191,12 +192,15 @@ def upvote
       params.require(:link).permit(:title, :url,:category_id,:image)
     end
 
+
     def correct_user
       @link = current_user.links.find_by(id: params[:id])
       if @link.nil?
         flash_message :danger ,  "Not authorized to edit this link" 
+        @link = Link.find(params[:id])
+        redirect_to @link
       end
-      redirect_to root_url
+
     end
 
     def find_link

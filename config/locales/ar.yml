@@ -342,3 +342,5 @@ ar:
   label_error: اخطاء
   label_firstLinker: 'كن أول من يضيف رابطاً'
   label_addLink: 'أضف رابطاً'
+  label_editCategoryTitle: تعديل التصنيف
+  label_editLinkTitle: تعديل الرابط
