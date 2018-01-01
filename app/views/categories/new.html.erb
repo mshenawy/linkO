@@ -1,6 +1,13 @@
-<div class="mainTitle">
-	<h4> <%= t(:label_newCategoryTitle) %> </h4>
+<% provide(:title, t(:label_newCategoryTitle) ) %>
+
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col-12 col-md-8">
+			<div class="">
+				<h3><%=t :label_newCategoryTitle %> </h3>
+				<hr class="colorgraph">
+				<%= render 'form', category: @category %>
+			</div>
+		</div>
+	</div>
 </div>
-
-<%= render 'form', category: @category %>
-

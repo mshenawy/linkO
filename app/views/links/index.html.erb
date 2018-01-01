@@ -1,55 +1,63 @@
 <% provide(:title, "LinkO") %>
 
- <div class="menuarea">
-  <div class="spacer">
-     <%= form_tag({}, {:method => :get}) do %>
-       <span class="">ﺭﻭاﺑﻂ ﻣﻦ: </span>   
-       <% @people = [{"name"=>"اﻟﺴﺎﻋﻪ اﻟﻤﺎﺿﻴﺔ", "value"=>"hour"}, {"name"=>"اﻟﻴﻮﻡ اﻟﻤﺎﺿﻰ", "value"=>"day"}, {"name"=>"اﻻﺳﺒﻮﻉ اﻟﻤﺎﺿﻰ ", "value"=>"week"}, {"name"=>"اﻟﺸﻬﺮ اﻟﻤﺎﺿﻰ", "value"=>"month"}, {"name"=>"اﻟﻌﺎﻡ اﻟﻤﺎﺿﻰ", "value"=>"year"}, {"name"=>"اﻟﻜﻞ", "value"=>"all"}] %>
-       
-       <% if params[:t].present? %>
-       <% @selected = params[:t]  %>
-       <% else %>
-        <% @selected = "month" %>  
-       <% end %>
-       
+<% if  @links.count > 0 %>
+
+<div class="container" >      
+  <div class="menuarea">
+    <div class="spacer">
+      <%= form_tag({}, {:method => :get}) do %>
+      <span class=""><%= t(:label_linksFrom) %> </span>   
+      <% @label_lastHour = t(:label_lastHour) %>
+      <% @label_lastDay = t(:label_lastDay) %>
+      <% @label_lastWeek = t(:label_lastWeek) %>
+      <% @label_lastMonth = t(:label_lastMonth) %>
+      <% @label_lastYear = t(:label_lastYear) %>
+      <% @label_all = t(:label_all) %>
+      <% @people = [{"name"=> @label_lastHour , "value"=>"hour"}, {"name"=>@label_lastDay, "value"=>"day"}, {"name"=>@label_lastWeek, "value"=>"week"}, {"name"=>@label_lastMonth, "value"=>"month"}, {"name"=>@label_lastYear, "value"=>"year"}, {"name"=>@label_all, "value"=>"all"}] %>
+      <% if params[:t].present? %>
+      <% @selected = params[:t]  %>
+      <% else %>
+      <% @selected = "all" %>  
+      <% end %>
+
       <%= select_tag :t, options_for_select(@people.collect {|p| [ p['name'], p['value'] ] },@selected) %>
       <% end %>
     </div>
- </div>
-  
-        <div class="itemsList">
-          <% @links.each do |link| %>
-          <div id="link_id_<%= link.id %>" >
-            <%= render 'shared/link_row' ,link: link %>
-            </div>
-          <% end %>
-          </div>
-      
+  </div>
+  <hr class="my-1">
 
-      <% if params[:category] %>
-        <div class="ProfileTemplate__sidebar">
-         <div class="ProfileSidebar__titleContainer">
-            <div class="blockW">
-              <h2 class="underline"> <%= params[:category] %> </h2>
-             <span >
-            <%= render 'categories/cat_follow_form' , category:@category %>
-            </span>
-            
-            </div>
-          
-         </div> 
-     </div>
-      <% end %>
-     
+  <div class="itemsList">
+    <% @links.each do |link| %>
+    <div id="link_id_<%= link.id %>" >
+      <%= render 'shared/link_row' ,link: link %>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>
+<% else %>
+
+<div class="container">
+
+  <div class="row justify-content-md-center">
+
+    <div class="col-12 col-md-8">
+
+      <h1><%= t(:label_firstLinker) %> <%= link_to  t(:label_addLink), new_link_path ,class: "btn btn-success btn-sm mx-1"  %>  </h1>
+      <br>
+      <br>
+    </div>
+
+  </div>
 
 </div>
-
+<% end %> 
 
 
 <script type="text/javascript">
-$(document).ready(function() {
-        $('#t').on('change', function(event) {
-          var selected_id = $(this).val();
+  $(document).ready(function() {
+    $('#t').on('change', function(event) {
+      var selected_id = $(this).val();
           // alert(selected_id);
           var url= window.location.href; 
           var res = url.replace('?','&').split("&");
@@ -59,21 +67,21 @@ $(document).ready(function() {
           var haveQ = false;
           for(var i =1 ; i<res.length ; i++){
             var temp = res[i];
-              if(temp.startsWith("t=")){
-                continue;
-              }
+            if(temp.startsWith("t=")){
+              continue;
+            }
             if (i==1) {
               newUrl = newUrl+"?"+temp;
               haveQ = true;
             }
             else 
-            newUrl = newUrl+"&"+temp;
+              newUrl = newUrl+"&"+temp;
           }
           if(!haveQ){
             newUrl = newUrl+"?"+"t="+selected_id;
           }else newUrl = newUrl+"&"+"t="+selected_id;
           if(newUrl)
              window.location = newUrl; // just redirect
-           })
-      });
+         })
+  });
 </script>

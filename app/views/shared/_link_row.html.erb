@@ -1,3 +1,5 @@
+ <p id=""></p>
+
         <% @a = "" %>
         <% @b = "" %>
         <% unless current_user.nil? %>
@@ -92,7 +94,7 @@
                       </li>
                       <li class="list-inline-item">
                         <small ><%= t(:label_in) %>
-                          <%= link_to link.category.name, home_path(category: link.category.name) %>
+                          <%= link_to link.category.name, link.category %>
                         </small>
                       </li>
 

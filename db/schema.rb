@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217142909) do
+ActiveRecord::Schema.define(version: 20171229160458) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "image"
     t.string   "about"
+    t.string   "arabic_name"
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|

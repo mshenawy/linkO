@@ -1,7 +1,11 @@
 <% provide(:title, t(:label_editAccount) ) %>
 <% provide(:button_text, t(:label_saveEdits) ) %>
 
-<div class="mainTitle">
-<h2><%= t(:label_unerInfo)  %></h2>
-</div>
-<%= render 'edit', user: @user %>
+<div class="container">
+ <div class="row middle">
+  <div class="col-xs-10 col-sm-10 col-md-10 col-sm-offset-2 col-md-offset-3">
+   <h2><%=t :label_updateAccountInfo %> </h2>
+   <hr class="colorgraph">
+   <%= render 'edit', user: @user %>
+  </div>
+

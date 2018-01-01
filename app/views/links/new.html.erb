@@ -1,12 +1,18 @@
+<% provide(:title, t(:label_newLinkTitle) ) %>
 
-<div id="link-desc" class="alert alert-info">
-	 <h5>
-	<%= t :label_newLinkBeforeTitle %>
-	</h5>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col-12 col-md-8">
+			<div id="link-desc" class="alert alert-info">
+				<h8>
+					<%= t :label_newLinkBeforeTitle %>
+				</h8>
+			</div>
+			<div class="">
+				<h3><%=t :label_newLinkTitle %> </h3>
+				<hr class="colorgraph">
+				<%= render 'form', link: @link %>
+			</div>
+		</div>
+	</div>
 </div>
-	<br>
-<div class="mainTitle">
-	<h4><%=t :label_newLinkTitle %></h4>
-</div>
-
-<%= render 'form', link: @link %>

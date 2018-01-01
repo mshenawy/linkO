@@ -24,7 +24,7 @@ class RelationshipsController < ApplicationController
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "برجاء تسجيل الدخول."
+        flash_message :danger ,  "برجاء تسجيل الدخول."
         redirect_to login_url
       end
     end

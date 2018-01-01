@@ -24,11 +24,12 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :links
+  has_many :links , dependent: :destroy
   has_many :cat_followed_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :cat_followed, through: :cat_followed_relationships, source: :following
   validates :image , presence: false, allow_nil: true
   acts_as_voter
+  has_many :categories , dependent: :destroy
 
 
   def to_param

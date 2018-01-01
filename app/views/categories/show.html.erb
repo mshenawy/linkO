@@ -1,36 +1,39 @@
-<p id="notice"><%= notice %></p>
 
-<div class="card">
-	<div class="container">
-		<div class="row align-items-center" >
-			<div class="col-1.5"> <div class="thumbnail">
-				<%= link_to  image_tag(@category.image.url ,class: "thumbnail" ), @category if @category.image? %>
-				<%= link_to  image_tag('default-image-category.png',  class: "thumbnail "), @category unless @category.image? %>
-			</div></div>
-			<div class="col-10">
-				<P><b><h2>
-					<div class="link_name">
-						<%= link_to @category.name, @category   %>
-					</div>
-				</h2>
-			</b></P>
-		</div>
+<div class="container">    
+<div id="category_id_<%= @category.id %>" >
+	<%= render 'shared/category_row' ,category: @category , user: @user %>
+</div>
+<% if  @links.count > 0 %>
+
+<div class="menuarea">
+	<div class="spacer">
+		<%= form_tag({}, {:method => :get}) do %>
+		<span class=""><%= t(:label_linksFrom) %> </span>   
+		<% @label_lastHour = t(:label_lastHour) %>
+		<% @label_lastDay = t(:label_lastDay) %>
+		<% @label_lastWeek = t(:label_lastWeek) %>
+		<% @label_lastMonth = t(:label_lastMonth) %>
+		<% @label_lastYear = t(:label_lastYear) %>
+		<% @label_all = t(:label_all) %>
+		<% @people = [{"name"=> @label_lastHour , "value"=>"hour"}, {"name"=>@label_lastDay, "value"=>"day"}, {"name"=>@label_lastWeek, "value"=>"week"}, {"name"=>@label_lastMonth, "value"=>"month"}, {"name"=>@label_lastYear, "value"=>"year"}, {"name"=>@label_all, "value"=>"all"}] %>
+
+		<% if params[:t].present? %>
+		<% @selected = params[:t]  %>
+		<% else %>
+		<% @selected = "all" %>  
+		<% end %>
+
+		<%= select_tag :t, options_for_select(@people.collect {|p| [ p['name'], p['value'] ] },@selected) %>
+		<% end %>
 	</div>
-	<div class="w-100"></div>
-	<div class="row align-items-start" >
-		<div class="col-12">
-			<p> 
-				<h3>
-					<%= @category.about %>
-				</h3>
-			</p>
-		</div>
+</div>
+<hr class="my-1">
+<% end %>
+<div class="itemsList">
+	<% @links.each do |link| %>
+	<div id="link_id_<%= link.id %>" >
+		<%= render 'shared/link_row' ,link: link %>
 	</div>
-	<div class="w-100"></div>
-	<div class="row align-items-start" >
-		<div class="col-12">
-			<%= render 'cat_follow_form' if logged_in? %>
-		</div>
-	</div>
+	<% end %>
 </div>
 </div>

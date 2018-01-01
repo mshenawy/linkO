@@ -1,61 +1,115 @@
-<h1><%=t(:hello_flash) %></h1>
+<% if current_page?(locale: :ar)  %>
 
-<div class="mainTitle">
-  <h2>  <%= @title %> </h2>
-</div>
-<div class="main">
- <div class="shell">
-  <header class="section-head">
-                <h2 class="section-title pull-right">
-                  linkO ﻳﺴﻬﻞ ﻋﻠﻴﻚ اﻟﻮﺻﻮﻝ اﻟﻰ اﻷﻓﻜﺎﺭ , اﻷﺧﺒﺎﺭ اﻟﻌﺎﺟﻠﻪ , اﻟﻌﺮﻭﺽ,... ﻭﻏﻴﺮﻫﺎ ، ﻣﻦ ﻣﺼﺎﺩﺭ ﻣﺘﻌﺪﺩﻩ ﻓﻰ ﻣﻜﺎﻥ ﻭاﺣﺪ ﻓﻘﻂ .                 
+<div class="container about_page">
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <div class="about_title">
+        لماذا LinkO
+      </div>
+      <h2 class="section-title pull-right">
+        linkO ﻳﺴﻬﻞ ﻋﻠﻴﻚ اﻟﻮﺻﻮﻝ اﻟﻰ اﻷﻓﻜﺎﺭ , اﻷﺧﺒﺎﺭ اﻟﻌﺎﺟﻠﻪ , اﻟﻌﺮﻭﺽ,... ﻭﻏﻴﺮﻫﺎ ، ﻣﻦ ﻣﺼﺎﺩﺭ ﻣﺘﻌﺪﺩﻩ ﻓﻰ ﻣﻜﺎﻥ ﻭاﺣﺪ ﻓﻘﻂ .                 
 
-                  <br>
-                  ﻣﻬﻤﺘﻨﺎ ﻣﺴﺎﻋﺪﺓ اﻟﻤﺠﺘﻤﻊ اﻟﻌﺮﺑﻰ ﻣﻦ اﺳﺘﻜﺸﺎﻑ اﻟﻌﺎﻟﻢ اﻟﺬﻯ ﻳﻌﻴﺸﻮﻥ ﻓﻴﻪ , ﻭﺗﻤﻜﻴﻦ ﻣﺠﺘﻤﻌﻨﺎ ﻣﻦ اﻹﺯﺩﻫﺎﺭ.
-                </h2>
-            </header>
-
- </div>
- 
-</div>
-<br>
-
-<!-- <div class="main row">
-  <div class="col-md-6 col-md-offset-3">
-  <%= image_tag('favicon.ico', alt: 'Image',class: "img-circle img-profile" ) %>
-  <%= image_tag('favicon.ico',  class: "logo-img-2 ") %>
-   </div>
-  </div> -->
- <div class="container" >
- <div class="row">
-  <div class="col-md-4"><%= image_tag('share.png',  class: "img-circle img-about") %></div>
-    <div class="col-md-4"><%= image_tag('vote.png',  class: " img-circle img-about") %></div>
-    <div class="col-md-4"><%= image_tag('Discuss1.png',  class: " img-about") %></div>
- </div>
-</div>
-<div class="container" >
- <div class="row">
-  <div class="col-md-4"><h2 class="about-title" >مشاركة</h2>
-   <h7>ﻳﻤﻜﻨﻚ ﻣﺸﺎﺭﻛﺔ ﺭاﺑﻂ ﻣﻌﻴﻦ ﻭﺃﺧﺘﻴﺎﺭ اﻟﺘﺼﻨﻴﻒ اﻟﻤﻨﺎﺳﺐ ,</h7>
-   <br>
-   <h7> ًﺇﻥ ﻟﻢ ﺗﺠﺪ ﺗﺼﻨﻴﻔﺎً ﻣﻨﺎﺳﺒﺎً ﻳﻤﻜﻨﻚ ﺇﺿﺎﻓﺔ ﺗﺼﻨﻴﻔﺎً ﺟﺪﻳﺪا.</h7>
-   <br>
-   <h7> ﻭﻛﺬﻟﻚ ﻳﻤﻜﻦ ﻟﻠﻤﺴﺘﺨﺪﻣﻴﻦ اﻻﺧﺮﻳﻦ اﻟﻤﺸﺎﺭﻛﻪ ﻓﻰ ﻫﺬا اﻟﺘﺼﻨﻴﻒ. </h7>
+        <br>
+        ﻣﻬﻤﺘﻨﺎ ﻣﺴﺎﻋﺪﺓ اﻟﻤﺠﺘﻤﻊ اﻟﻌﺮﺑﻰ ﻣﻦ اﺳﺘﻜﺸﺎﻑ اﻟﻌﺎﻟﻢ اﻟﺬﻯ ﻳﻌﻴﺸﻮﻥ ﻓﻴﻪ , ﻭﺗﻤﻜﻴﻦ ﻣﺠﺘﻤﻌﻨﺎ ﻣﻦ اﻹﺯﺩﻫﺎﺭ.
+      </h2>
+    </div>
   </div>
-    <div class="col-md-4">
-     <h2 class="about-title" >تصويت</h2>
-     <h7>ﺃﻫﻤﻴﺔ اﻟﺮﻭاﺑﻂ ﺗﺄﺗﻰ ﻣﻦ اﻟﺘﺼﻮﻳﺖ اﻹﻳﺠﺎﺑﻰ اﻭ اﻟﺴﻠﺒﻰ,</h7>
-   <br>
-   <h7> ﻓﺎﻟﺮﻭاﺑﻂ اﻻﻛﺜﺮ ﺃﻫﻤﻴﻪ ﻭاﻟﺘﻰ ﺗﺴﺘﺤﻖ اﻟﻤﺸﺎﻫﺪﻩ ﺗﺼﻌﺪ ﺩاﺋﻤﺎ اﻟﻰ اﻷﻋﻠﻰ. 
-   </h7>
-   <br>
+  <div class="row align-items-center justify-content-md-center" >
+    <div class="col-4 col-md-4">
+      <div style="max-width: 150px;" class="mx-1"  >
+        <%= image_tag('share.png',  class: "card-img-top rounded-circle") %>
+      </div>
+    </div>
+    <div class="col-4 col-md-4">
+      <div style="max-width: 150px;" class="mx-1" >
+        <%= image_tag('vote.png',  class: "card-img-top rounded-circle") %>
+      </div>
+    </div>
+    <div class="col-4 col-md-4">
+      <div style="max-width: 150px;" class="mx-1" >
+        <%= image_tag('Discuss1.png',  class: "card-img-top ") %>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center justify-content-md-center" >
+    <div class="col-md-4 ">
+      <h2 class="about-title" >مشاركة</h2>
+      <h7>ﻳﻤﻜﻨﻚ ﻣﺸﺎﺭﻛﺔ ﺭاﺑﻂ ﻣﻌﻴﻦ ﻭﺃﺧﺘﻴﺎﺭ اﻟﺘﺼﻨﻴﻒ اﻟﻤﻨﺎﺳﺐ ,</h7>
+      <br>
+      <h7> ًﺇﻥ ﻟﻢ ﺗﺠﺪ ﺗﺼﻨﻴﻔﺎً ﻣﻨﺎﺳﺒﺎً ﻳﻤﻜﻨﻚ ﺇﺿﺎﻓﺔ ﺗﺼﻨﻴﻔﺎً ﺟﺪﻳﺪا.</h7>
+      <br>
+      <h7> ﻭﻛﺬﻟﻚ ﻳﻤﻜﻦ ﻟﻠﻤﺴﺘﺨﺪﻣﻴﻦ اﻻﺧﺮﻳﻦ اﻟﻤﺸﺎﺭﻛﻪ ﻓﻰ ﻫﺬا اﻟﺘﺼﻨﻴﻒ. </h7>
     </div>
     <div class="col-md-4">
-     <h2 class="about-title" >ﻣﻨﺎﻗﺸﺔ</h2>
-     <h7>ﻳﻤﻜﻦ ﻟﻠﻤﺴﺘﺨﺪﻣﻴﻦ اﻟﺘﻌﻠﻴﻖ ﻋﻠﻰ اﻯ ﺭاﺑﻂ.</h7>
-   <br>
-   <h7> ﻫﺬﻩ اﻟﻤﻨﺎﻗﺸﻪ ﺗﻮﻓﺮ ﻣﻌﻠﻮﻣﺎﺕ ﺇﺿﺎﻓﻴﺔ، ﻣﻨﺎﻗﺸﺔ ﻗﻮﻳﺔ، ﻭﻏﺎﻟﺒﺎ اﻟﻔﻜﺎﻫﺔ. 
-   </h7>
-   <br>
+      <h2 class="about-title" >تصويت</h2>
+      <h7>ﺃﻫﻤﻴﺔ اﻟﺮﻭاﺑﻂ ﺗﺄﺗﻰ ﻣﻦ اﻟﺘﺼﻮﻳﺖ اﻹﻳﺠﺎﺑﻰ اﻭ اﻟﺴﻠﺒﻰ,</h7>
+      <br>
+      <h7> ﻓﺎﻟﺮﻭاﺑﻂ اﻻﻛﺜﺮ ﺃﻫﻤﻴﻪ ﻭاﻟﺘﻰ ﺗﺴﺘﺤﻖ اﻟﻤﺸﺎﻫﺪﻩ ﺗﺼﻌﺪ ﺩاﺋﻤﺎ اﻟﻰ اﻷﻋﻠﻰ. 
+      </h7>
+      <br>
     </div>
- </div>
+    <div class="col-md-4">
+      <h2 class="about-title" >مناقشة</h2>
+      <h7>ﻳﻤﻜﻦ ﻟﻠﻤﺴﺘﺨﺪﻣﻴﻦ اﻟﺘﻌﻠﻴﻖ ﻋﻠﻰ اﻯ ﺭاﺑﻂ.</h7>
+      <br>
+      <h7> ﻫﺬﻩ اﻟﻤﻨﺎﻗﺸﻪ ﺗﻮﻓﺮ ﻣﻌﻠﻮﻣﺎﺕ ﺇﺿﺎﻓﻴﺔ، ﻣﻨﺎﻗﺸﺔ ﻗﻮﻳﺔ، ﻭﻏﺎﻟﺒﺎ اﻟﻔﻜﺎﻫﺔ. 
+      </h7>
+      <br>
+    </div>
+    
+  </div>
 </div>
+
+
+<% else %>
+
+<div class="container about_page">
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <div class="about_title">
+        Why LinkO Exists
+      </div>
+      <h2 class="section-title">
+        linkO helps you to catch Ideas,News,offers,(Links)...from defrent places in one place.               
+        <br>
+        Our mession is to help our community to discover the world they live.
+      </h2>
+    </div>
+  </div>
+  <div class="row align-items-center justify-content-md-center" >
+    <div class="col-4 col-md-4">
+      <div style="max-width: 150px;" class="mx-1"  >
+        <%= image_tag('share.png',  class: "card-img-top rounded-circle") %>
+      </div>
+    </div>
+    <div class="col-4 col-md-4">
+      <div style="max-width: 150px;" class="mx-1" >
+        <%= image_tag('vote.png',  class: "card-img-top rounded-circle") %>
+      </div>
+    </div>
+    <div class="col-4 col-md-4">
+      <div style="max-width: 150px;" class="mx-1" >
+        <%= image_tag('Discuss1.png',  class: "card-img-top ") %>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-center justify-content-md-center" >
+    <div class="col-md-4 ">
+      <h2 class="about-title" >Share</h2>
+      <h7>Anyone can create a community on nearly any topic imaginable. Each community is independently moderated by volunteer users. Community members can share content including stories, links, and images. </h7>
+    </div>
+    <div class="col-md-4">
+      <h2 class="about-title" >Vote</h2>
+      <h7>The global LinkO community votes on which Links are important by casting upvotes or downvotes. The most interesting, funniest, impactful, or simply amazing stories rise to the top.</h7>
+    </div>
+    <div class="col-md-4">
+      <h2 class="about-title" >Discuss</h2>
+      <h7>Linkers can comment on any Link on LinkO. Comments are often the best part about LinkO content—they provide additional information, vigorous discussion, context, and often humor.</h7>
+    </div>
+    
+  </div>
+</div>
+
+
+
+<% end %>

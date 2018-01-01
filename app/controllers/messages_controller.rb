@@ -21,12 +21,12 @@ class MessagesController < ApplicationController
     end
 
       if @message.save
-        flash[:success] = "Message sent successfully !"
+        flash_message :success ,  "Message sent successfully !"
         redirect_to :back 
       else
         if @message.errors.any?
            @message.errors.full_messages.each do |single|
-             flash[:danger] = single
+             flash_message :danger ,  single
            end
          end
         redirect_to :back 
@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy
-    flash[:success] = "Message deleted"
+    flash_message :success ,  "Message deleted"
     redirect_to request.referrer || root_url
   end
 

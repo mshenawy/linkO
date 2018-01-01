@@ -1,58 +1,79 @@
-
-<% provide(:title, @user.username) %>
-
- <div class="menuarea">
-  <div class="spacer">
-   <%= form_tag({}, {:method => :get}) do %>
-   <span class="">ﺭﻭاﺑﻂ ﻣﻦ: </span>   
-   <% @people = [{"name"=>"اﻟﺴﺎﻋﻪ اﻟﻤﺎﺿﻴﺔ", "value"=>"hour"}, {"name"=>"اﻟﻴﻮﻡ اﻟﻤﺎﺿﻰ", "value"=>"day"}, {"name"=>"اﻻﺳﺒﻮﻉ اﻟﻤﺎﺿﻰ ", "value"=>"week"}, {"name"=>"اﻟﺸﻬﺮ اﻟﻤﺎﺿﻰ", "value"=>"month"}, {"name"=>"اﻟﻌﺎﻡ اﻟﻤﺎﺿﻰ", "value"=>"year"}, {"name"=>"اﻟﻜﻞ", "value"=>"all"}] %>
-        <% if params[:t].present? %>
-       <% @selected = params[:t]  %>
-       <% else %>
-        <% @selected = "month" %>  
-       <% end %>
-  <%= select_tag :t, options_for_select(@people.collect {|p| [ p['name'], p['value'] ] },@selected) %>
- <% end %>
-  </div>
- </div>
-
-
-<div class="ProfileTemplate__body">
-      <div class="ProfileTemplate__content">
-         <div class="itemsList">
-          <% @links.each do |link| %>
-          <div id="link_id_<%= link.id %>" >
-            <%= render 'shared/link_row' , link: link %>
+  <div class="container-01">
+    <div class="row">
+      <div class="col-md-3">
+        <!-- <h3 class="text-center mb-5">Simple Card</h3> -->
+        <div class="card card-01">
+          <img class="card-img-top" src="https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?h=350&auto=compress&cs=tinysrgb" alt="Card image cap"><div class="profile-box">
+            <%= image_tag(@user.image.url, alt: 'Image',class: "card-img-top rounded-circle" ) if @user.image? %>
+            <%= image_tag('default_profile_image.jpg', alt: 'Image',class: "card-img-top rounded-circle" ) unless @user.image? %>
+            
           </div>
+          <div class="card-body text-center">
+            <span class="badge-box"><i class="fa fa-check"></i></span>
+            <h4 class="card-title">
+              <%= @user.name %>
+            </h4>
+            <div class="contBlock">
+              <i class="fa fa-star"><%= t(:label_points) %> <%= @user.points.round %> </i>
+            </div>
+            <div class="contBlock">
+             <i class="fa fa-calendar"> <%= t(:label_registerDate) %> <%= @user.created_at %> </i>
+           </div>
+           <span class="social-box">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <% if  @links.count > 0 %>
+      <div class="menuarea">
+        <div class="spacer">
+          <%= form_tag({}, {:method => :get}) do %>
+          <span class=""><%= t(:label_linksFrom) %> </span>   
+          <% @label_lastHour = t(:label_lastHour) %>
+          <% @label_lastDay = t(:label_lastDay) %>
+          <% @label_lastWeek = t(:label_lastWeek) %>
+          <% @label_lastMonth = t(:label_lastMonth) %>
+          <% @label_lastYear = t(:label_lastYear) %>
+          <% @label_all = t(:label_all) %>
+          <% @people = [{"name"=> @label_lastHour , "value"=>"hour"}, {"name"=>@label_lastDay, "value"=>"day"}, {"name"=>@label_lastWeek, "value"=>"week"}, {"name"=>@label_lastMonth, "value"=>"month"}, {"name"=>@label_lastYear, "value"=>"year"}, {"name"=>@label_all, "value"=>"all"}] %>
+
+          <% if params[:t].present? %>
+          <% @selected = params[:t]  %>
+          <% else %>
+          <% @selected = "all" %>  
           <% end %>
-         </div>
+
+          <%= select_tag :t, options_for_select(@people.collect {|p| [ p['name'], p['value'] ] },@selected) %>
+          <% end %>
+        </div>
+      </div>
+      <hr class="my-1">
+
+      <div class="itemsList">
+        <% @links.each do |link| %>
+        <div id="link_id_<%= link.id %>" >
+          <%= render 'shared/link_row' , link: link %>
+        </div>
+        <% end %>
       </div>
 
-     <div class="ProfileTemplate__sidebar">
-         <div class="ProfileSidebar__titleContainer">
-            <div class="profileImg no-padding">
-              <%= image_tag(@user.image.url, alt: 'Image',class: "img-circle img-profile" ) if @user.image? %>
-            </div>
-            <span class="userName userOnline"><%= @user.username %></span>
-             <div class="contBlock">
-                <%= render 'follow_form' if logged_in? %>
-              </div> 
-              <div class="contBlock">
-                <i class="fa fa-star"> ﻧﻘﺎﻁ <%= @user.points.round %> </i>
-              </div>
-            <div class="contBlock">
-               <i class="fa fa-calendar"> ﺗﺎﺭﻳﺦ اﻟﺘﺴﺠﻴﻞ  <%= @user.created_at %> </i>
-            </div>
-          
-         </div> 
-     </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>
+</div>
 </div>
 
 
 <script type="text/javascript">
-   $(document).ready(function() {
-        $('#t').on('change', function(event) {
-          var selected_id = $(this).val();
+ $(document).ready(function() {
+  $('#t').on('change', function(event) {
+    var selected_id = $(this).val();
           // alert(selected_id);
           var url= window.location.href; 
           var res = url.replace('?','&').split("&");
@@ -60,11 +81,11 @@
           var haveT = false;
           for(var i =0 ; i<res.length ; i++){
             var temp = res[i];
-              if(temp.startsWith("t=")){
-                temp = "t="+selected_id;
-                haveT = true;
-              }
-              if(i==0)
+            if(temp.startsWith("t=")){
+              temp = "t="+selected_id;
+              haveT = true;
+            }
+            if(i==0)
               newUrl =temp;
             else if (i==1) {
               newUrl = newUrl+"?"+temp;
@@ -76,7 +97,7 @@
           }
           if(newUrl)
              window.location = newUrl; // just redirect
-           })
-      });
+         })
+});
 
 </script>

@@ -9,8 +9,8 @@
 
   <%= form_tag search_links_path, method: :get, class: "form-inline col-sm-6 ", role: "search" do %>
   <p>
-    <div class="input-group input-group-sm col-sm-8 ">
-      <%= text_field_tag :search, params[:search], class: "form-control" , placeholder: "Search LinkO" %>
+    <div class="input-group input-group-sm col-sm-8 search_group">
+      <%= text_field_tag :search, params[:search], class: "form-control input-group search_input" , placeholder: "ابحث فى LinkO" %>
       <span class="input-group-btn ">
         <%= button_tag  ' ', name: nil, class: "btn btn-secondary " do %>
         <i class="fa fa-search" aria-hidden="true"></i>
@@ -22,7 +22,7 @@
  <!--  <button class="btn btn-success btn-sm mx-1" type="button"
   data-toggle="modal" data-target="#exampleModal">Add Link</button>
 -->
-<%= link_to "Add Link", new_link_path ,class: "btn btn-success btn-sm mx-1"  %> 
+<%= link_to t(:label_addLink), new_link_path ,class: "btn btn-success btn-sm mx-1"  %> 
 
 <% end %>
 
@@ -62,8 +62,8 @@
       <%= t(:label_headerAccount)  %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <%= link_to ' '+current_user.username.to_s+ ' ', current_user , class: "dropdown-item fa fa-user headerFont"  %>
-      <%= link_to t(:label_headerAccountEdit),  edit_user_path(current_user) , class: "dropdown-item fa fa-edit headerFont"  %>
+      <%= link_to t(:label_space) + current_user.username.to_s, current_user , class: "dropdown-item fa fa-user headerFont"  %>
+      <%= link_to ' '+ t(:label_headerAccountEdit)+ ' ',  edit_user_path(current_user) , class: "dropdown-item fa fa-edit headerFont"  %>
 
       <%= link_to t(:label_logout), logout_path, method: :delete , class: "dropdown-item fa fa-sign-out headerFont"  %>
     </div>
@@ -85,9 +85,6 @@
   <li class="nav-item dropdown">
     <%= link_to ' '+t(:label_NewAccount), signup_path , class: "nav-link fa fa-user-plus headerFont"  %>
   </li>
-          <!-- <li class="nav-item dropdown">
-            <%= link_to t(:label_login), login_path , class: "nav-link fa fa-sign-in"  %>
-          </li> -->
 
           <li class="nav-item dropdown">
             <a href="javascript:;" class="dropdown-toggle nav-link fa fa-sign-in headerFont" data-toggle="dropdown"><b><%= ' '+t(:label_login) %></b>

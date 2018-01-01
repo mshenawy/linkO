@@ -1,21 +1,29 @@
 <div class="main">
-<%= form_for(@link) do |f| %>
+  <%= form_for(@link) do |f| %>
   <% if @link.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+  <div id="error_explanation" class="alert alert-danger">
+    <h4><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h4>
 
-      <ul>
+    <ul>
       <% @link.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
-<form>
+  <form>
+   <% if current_page?(locale: :ar)  %>
+   <div class="form-group">
+    <%= f.label t(:label_category) , class: "required-field" %><br>
+    <%= f.collection_select  :category_id ,Category.all,:id,:arabic_name, {} , {class: "form-control"} %>
+  </div>
+  <% else %>
   <div class="form-group">
     <%= f.label t(:label_category) , class: "required-field" %><br>
     <%= f.collection_select  :category_id ,Category.all,:id,:name, {} , {class: "form-control"} %>
   </div>
+  <% end %>
+
   <div class="txtSmall margB25">
     <%= t(:under_labelCategoryMsg) %>
     <%= link_to t(:label_here) ,new_category_path  %>.
@@ -33,19 +41,19 @@
     <%= f.label  t(:label_url)  , class: "required-field" %><br>
     <%= f.text_field :url, class: "form-control" %>
   </div>
-   <div class="txtSmall margB25">
+  <div class="txtSmall margB25">
     <%= t(:under_labelUrlMsg) %>
   </div>
 
   <div class="form-group">
-         <label for="image"><%= t(:label_attachImage) %></label>
-          <%= f.file_field :image, class: 'form-control', name: 'Confirm Password' %>
-      </div>
-    <br>
-  <div class="form-group">
-    <%= f.submit t(:label_buttonSubmit), class: "btn btn-lg btn-primary" %>
-  </div>
-  </form>
+   <label for="image"><%= t(:label_attachImage) %></label>
+   <%= f.file_field :image, class: 'form-control', name: 'Confirm Password' %>
+ </div>
+ <br>
+ <div class="form-group">
+  <%= f.submit t(:label_buttonSubmit), class: "btn btn-lg btn-primary" %>
+</div>
+</form>
 <% end %>
 
 </div>

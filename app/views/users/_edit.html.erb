@@ -1,8 +1,8 @@
-
+<div class="container">
 <div class="main">
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
       <ul>
       <% @user.errors.full_messages.each do |message| %>
@@ -13,17 +13,17 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label t(:label_login) , class: "required-field" %><br>
+    <%= f.label t(:label_name) , class: "required-field" %><br>
     <%= f.text_field :name,class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label t(:label_name) , class: "required-field" %><br>
+    <%= f.label t(:label_userName) , class: "required-field" %><br>
     <%= f.text_field :username, class: "form-control"%>
   </div>
   
   <div class="form-group">
-  <%= f.label t(:label_userName) , class: "required-field" %>
+  <%= f.label t(:label_email) , class: "required-field" %>
   <%= f.email_field :email, class: 'form-control' %>
   </div>
   
@@ -39,4 +39,5 @@
 
 <% end %>
 
+</div>
 </div>

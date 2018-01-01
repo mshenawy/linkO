@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :correct_user,   only: [:destroy , :update]
   # GET /categories
   # GET /categories.json
   def index
@@ -10,11 +10,15 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    category = Category.find(params[:id])
+    @links = Link.where("category_id= ?" , category.id) 
   end
 
   # GET /categories/new
   def new
-    @category = Category.new
+    # @category = Category.new
+    @category = current_user.categories.build
+    @link = current_user.links.build
   end
 
   # GET /categories/1/edit
@@ -24,8 +28,9 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
-
+    # @category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
+    # @category.user = current_user
     respond_to do |format|
       if @category.save
         format.html { redirect_to categories_path }
@@ -42,7 +47,8 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        flash_message :success ,  "Category was successfully updated." 
+        format.html { redirect_to @category }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -51,17 +57,18 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.json
+
   def destroy
+
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+      flash_message :success ,  "Category was successfully destroyed." 
+     format.html { redirect_to categories_url  }
+     format.json { head :no_content }
+   end
+ end
 
-  private
+ private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
@@ -69,6 +76,19 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :about, :image)
+      params.require(:category).permit(:name,:arabic_name, :about, :image)
     end
-end
+
+
+    def correct_user
+      @category = current_user.categories.find_by(id: params[:id])
+      p "selected catg : "
+      p  @category.name
+      if @category.nil?
+        flash_message :danger ,  "Not authorized to edit this link" 
+        redirect_to @category
+      end
+
+    end
+
+  end

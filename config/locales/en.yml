@@ -281,3 +281,20 @@ en:
   label_forgotPassword: Forgot password
   label_about: About
   label_home: Home
+  label_arabicName: Arabic Name
+  label_linksFrom: Links From
+  label_lastHour: last hour
+  label_lastDay: last day
+  label_lastWeek: last week
+  label_lastMonth: last month
+  label_lastYear: last year
+  label_all: All
+  label_addNewUser: Add New User
+  label_updateAccountInfo: Update Account 
+  label_points: Points
+  label_registerDate: Register Date
+  label_space:  ' '
+  label_saveError: 'prohibited this link from being saved:'
+  label_error: error
+  label_firstLinker: Be the First One to
+  label_addLink: Add Link

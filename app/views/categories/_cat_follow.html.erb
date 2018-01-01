@@ -1,4 +1,8 @@
 <%= form_for(current_user.cat_followed_relationships.build, remote: true) do |f| %>
   <div><%= hidden_field_tag :following_id, @category.id %></div>
-  <%= f.submit "Follow", class: "btn btn-primary" %>
+ 
+ <% @counter = number_to_human(@category.follower.count , :units => {:thousand => "K"},:format =>"%n%u",:precision => 4)  # => "500 K"
+                      %>
+ 
+  <%= f.submit "Follow | "+@counter.to_s, class: "btn btn-primary" %>
 <% end %>

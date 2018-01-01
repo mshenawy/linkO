@@ -18,7 +18,7 @@ class LinksController < ApplicationController
     
   end
 
-   def search
+  def search
     if params[:search].present?
       @links = Link.search(params[:search])
     else
@@ -26,7 +26,7 @@ class LinksController < ApplicationController
     end
   end
 
-   def recent_posts
+  def recent_posts
     @skip = 0
     @category = nil
     if params[:category].blank?
@@ -37,7 +37,7 @@ class LinksController < ApplicationController
     
     if params[:category].present?
       logger.info(params[:category])
-    links = Link.where("category_id= ?" , @category.id) 
+      links = Link.where("category_id= ?" , @category.id) 
     else
       links = Link.all
     end
@@ -52,80 +52,89 @@ class LinksController < ApplicationController
 
 
   def update_links
-     @category_id = Category.find_by(name: params[:category]).id
-     if params[:t] =="day"
-      @links = Link.where("created_at >= ?", 1.day.ago.utc)    
-     end
-    respond_to do |format|
-      format.js
-    end
+   @category_id = Category.find_by(name: params[:category]).id
+   if params[:t] =="day"
+    @links = Link.where("created_at >= ?", 1.day.ago.utc)    
   end
+  respond_to do |format|
+    format.js
+  end
+end
 
-  def show
-    @link = Link.find(params[:id])
-  end
+def show
+  @link = Link.find(params[:id])
+end
 
   # GET /links/new
   def new
     @link = current_user.links.build
+    
   end
 
   # GET /links/1/edit
   def edit
-     @link = Link.find(params[:id])
-  end
+   @link = Link.find(params[:id])
+ end
 
-  def create
-    @link = current_user.links.build(link_params)
+ def create
+  @link = current_user.links.build(link_params)
 
-    respond_to do |format|
-      if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
-        format.json { render :show, status: :created, location: @link }
-      else
-        format.html { render :new }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
+  respond_to do |format|
+    if @link.save
+      format.html { redirect_to @link }
+      format.json { render :show, status: :created, location: @link }
+    else
+      format.html { render :new }
+      format.json { render json: @link.errors, status: :unprocessable_entity }
     end
   end
+  
+end
 
-  def update
-    respond_to do |format|
-      if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { render :show, status: :ok, location: @link }
-      else
-        format.html { render :edit }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
+def update
+  respond_to do |format|
+    if @link.update(link_params)
+     flash_message :success ,  'Link was successfully updated.';
+     format.html { redirect_to @link  }
+     format.json { render :show, status: :ok, location: @link }
+   else
+    if @link.errors.any? 
+     @link.errors.full_messages.each do |msg| 
+      flash_message :danger ,  msg 
     end
   end
+  format.html { render :edit }
+  format.json { render json: @link.errors, status: :unprocessable_entity }
+end
+end
+end
 
-  def destroy
-    @link.destroy
-    respond_to do |format|
-      format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+def destroy
+  @link.destroy
+  respond_to do |format|
+    flash_message :success ,  'Link was successfully destroyed.' ;
+    format.html { redirect_to links_url }
+    format.json { head :no_content }
   end
-  def vote_notLogin
-    
-  end
+end
+def vote_notLogin
 
-  def upvote
+end
+
+def upvote
 # check if user login
-    @link = Link.find(params[:id])
+@link = Link.find(params[:id])
     # @upvotes = @link.get_upvotes.size
     @liked = false
     if (current_user.voted_as_when_voted_for @link).nil?  
-       @link.liked_by current_user
-       @liked = true
+     @link.liked_by current_user
+     @liked = true
      elsif (current_user.voted_as_when_voted_for @link) # => true, user liked it
        @link.unliked_by current_user    
        @liked = false
-      else
-        @link.liked_by current_user
-       @liked = true
+     else
+      @link.liked_by current_user
+      @liked = true
     end
     
     if @liked 
@@ -138,9 +147,9 @@ class LinksController < ApplicationController
       @user.save        
     end 
     respond_to do |format|
-          format.html
-          format.js 
-        end
+      format.html
+      format.js 
+    end
   end
 
   def downvote
@@ -148,17 +157,17 @@ class LinksController < ApplicationController
     # @upvotes = @link.get_upvotes.size
     @disliked = false
     if (current_user.voted_as_when_voted_for @link).nil?  
-       @link.disliked_by current_user
-       @disliked = true
+     @link.disliked_by current_user
+     @disliked = true
      elsif not(current_user.voted_as_when_voted_for @link) # => true, user liked it
        @link.undisliked_by current_user    
        @disliked = false
      else
        @link.disliked_by current_user
        @disliked = true
-    end
-  
-    if @disliked 
+     end
+
+     if @disliked 
       @user = @link.user
       @user.points -= 0.2 
       @user.save  
@@ -176,7 +185,7 @@ class LinksController < ApplicationController
 
 
   private
-   
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
       params.require(:link).permit(:title, :url,:category_id,:image)
@@ -184,7 +193,10 @@ class LinksController < ApplicationController
 
     def correct_user
       @link = current_user.links.find_by(id: params[:id])
-      redirect_to root_url, notice: "Not authorized to edit this link" if @link.nil?
+      if @link.nil?
+        flash_message :danger ,  "Not authorized to edit this link" 
+      end
+      redirect_to root_url
     end
 
     def find_link
@@ -195,9 +207,9 @@ class LinksController < ApplicationController
     def logged_in_user_vote
       unless logged_in?
         store_location
-        flash[:danger] = "Please log in."
+        flash_message :danger ,  "Please log in."
         redirect_to root_url
 
       end
     end
-end
+  end

@@ -292,11 +292,11 @@ ar:
   label_buttonAddCategory: ًﺃﻧﺸﺎء ﺗﺼﻨﻴﻔﺎ
   label_buttonSubmit: ﺃﺭﺳﻞ
   label_here: ﻫﻨﺎ
-  label_headerAbout: LinkO ﻋﻦ
+  label_headerAbout: ﻋﻦ LinkO 
   label_headerNewLink: ًﺃﺿﻒ ﺭاﺑﻄﺎ 
   label_headerNewCategory: ًﺃﺿﻒ ﺗﺼﻨﻴﻔﺎ 
   label_headerAccount: اﻟﺤﺴﺎﺏ
-  label_headerAccountEdit: ﺗﻌﺪﻳﻞ اﻟﺤﺴﺎﺏ
+  label_headerAccountEdit: ﺗﻌﺪﻳﻞ اﻟﺤﺴﺎﺏ 
   label_logout:  ﺧﺮﻭﺝ 
   label_NewAccount: ﺣﺴﺎﺏ ﺟﺪﻳﺪ 
   label_login: ﺩﺧﻮﻝ
@@ -321,7 +321,24 @@ ar:
   label_edit: ﺗﺤﺮﻳﺮ
   label_popular: اﻷﺷﻬﺮ
   label_arabic: العربية 
-  label_english: الإنجليزية
+  label_english: 'English'
   label_categories: التصنيفات
   label_about: نبذه
   label_home: الصفحة الرئيسية
+  label_arabicName: الاسم بالعربى
+  label_linksFrom: روابط من
+  label_lastHour: الساعه الماضيه
+  label_lastDay: اليوم الماضى
+  label_lastWeek: الاسبوع الماضى
+  label_lastMonth: الشهر الماضى
+  label_lastYear: السنه الماضيه
+  label_all: الكل
+  label_addNewUser: ﺗﺴﺠﻴﻞ ﻣﺴﺘﺨﺪﻡ ﺟﺪﻳﺪ
+  label_updateAccountInfo: تحديث بياناتك
+  label_points: نقاط
+  label_registerDate: تاريخ التسجيل
+  label_space:   ' '
+  label_saveError: ' تمنع الرابط من الحفظ : '
+  label_error: اخطاء
+  label_firstLinker: 'كن أول من يضيف رابطاً'
+  label_addLink: 'أضف رابطاً'

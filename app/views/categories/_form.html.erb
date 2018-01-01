@@ -1,9 +1,10 @@
 <div class="main">
 <%= form_for(category) do |f| %>
-  <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
+ <% if category.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <% @label_error = t(:label_error) %>
+      <h4><%= pluralize(category.errors.count,  @label_error) %> 
+        <%= t(:label_saveError) %> </h4>
       <ul>
       <% category.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -21,8 +22,17 @@
   </div>
 
    <div class="form-group">
-    <%= f.label t(:label_about) %>
-    <%= f.text_field :about , class: "form-control"%>
+    <%= f.label t(:label_arabicName) , class: "required-field"%>
+    <%= f.text_field :arabic_name , class: "form-control"%>
+  </div>
+  <div class="txtSmall margB25">
+               <%= t(:under_labelCategoryName) %>
+  </div>
+
+   <div class="form-group">
+    <%= f.label t(:label_about),  class: "required-field" %>
+    <%= f.text_area  :about , class: "form-control" , :rows => 3 %>
+
   </div>
 
   <div class="form-group">

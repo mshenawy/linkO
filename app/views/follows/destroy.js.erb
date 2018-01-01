@@ -1,1 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('categories/cat_follow')) %>");
+ // alert('unfollow!');
+ $("#category_id_<%= @category.id %>").html("<%= escape_javascript(render('shared/category_row' , category: @category)) %>");

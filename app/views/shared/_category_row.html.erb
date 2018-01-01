@@ -1,37 +1,49 @@
-<!-- <p id="notice"><%= notice %></p>
--->
-<div class="card">
+ <p id=""></p>
+
+ <div class="card">
   <div class="container">
     <div class="row align-items-center" >
       <div class="col-1.5"> 
         <div class="thumbnail">
-          <%= link_to  image_tag(category.image.url ,class: "thumbnail" ), @category if category.image? %>
+          <%= link_to  image_tag(category.image.url ,class: "thumbnail" ), category if category.image? %>
           <%= link_to  image_tag('default-image-category.png',  class: "thumbnail "), category unless category.image? %>
         </div>
       </div>
       <div class="col-10.5">
         <P><b><h2>
          <div class="link_name">
-          <%= link_to category.name, category   %>
-        </div>
-      </h2>
-    </b></P>
+           <% if I18n.locale == :ar  %>
+           <%= link_to category.arabic_name, category   %>
+           <% else %>
+           <%= link_to category.name, category   %>
+           <% end %>
+         </div>
+       </h2>
+     </b></P>   
+     <% if current_user?(category.user) %>
+     <span class="delete_overflow">
+      <%= link_to content_tag(:i,nil, class: 'fa fa-trash-o'), category, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    </span>
+    <% end %>
   </div>
 </div>
 <div class="w-100"></div>
 <div class="row align-items-start" >
-  <div class="col-12">
+  <div class="col-1"> 
+  </div>
+  <div class="col-11">
     <p> 
-      <h3>
+      <h4>
         <%= category.about %>
-      </h3>
+      </h4>
     </p>
   </div>
 </div>
 <div class="w-100"></div>
 <div class="row align-items-start" >
-  <div class="col-12">
-    <%= render 'cat_follow_form',category: category if logged_in? %>
+  <div class="col-12 my-2">
+    <%= render 'categories/cat_follow_form',category: category if logged_in? %>
   </div>
 </div>
 </div>
