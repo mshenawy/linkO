@@ -7,7 +7,7 @@
   </button>
 
 
-  <%= form_tag search_links_path, method: :get, class: "form-inline col-sm-6 ", role: "search" do %>
+  <%= form_tag search_links_path, method: :get, class: "form-inline col-sm-5 ", role: "search" do %>
   <p>
     <div class="input-group input-group-sm col-sm-8 search_group">
       <%= text_field_tag :search, params[:search], class: "form-control input-group search_input" , placeholder: "ابحث فى LinkO" %>
@@ -61,46 +61,39 @@
     <a class="nav-link dropdown-toggle fa fa-user headerFont" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= t(:label_headerAccount)  %>
     </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <%= link_to t(:label_space) + current_user.username.to_s, current_user , class: "dropdown-item fa fa-user headerFont"  %>
-      <%= link_to ' '+ t(:label_headerAccountEdit)+ ' ',  edit_user_path(current_user) , class: "dropdown-item fa fa-edit headerFont"  %>
-
-      <%= link_to t(:label_logout), logout_path, method: :delete , class: "dropdown-item fa fa-sign-out headerFont"  %>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="direction: ltr;">
+      <%= link_to t(:label_space) + current_user.username.to_s, current_user , class: "dropdown-item fa fa-user headerFont dropdown-menu-right"  %>
+      <%= link_to ' '+ t(:label_headerAccountEdit)+ ' ',  edit_user_path(current_user) , class: "dropdown-item fa fa-edit headerFont dropdown-menu-right"  %>
+      <%= link_to t(:label_logout), logout_path, method: :delete , class: "dropdown-item fa fa-sign-out headerFont dropdown-menu-right"  %>
     </div>
   </li>
-  <li class="nav-item ">
-
-  </li>
-
-  <li class="nav-item">
-    <% if current_page?(locale: :ar)  %>
-    <%= link_to_in_li ' '+t(:label_english),  { :locale=>'en' } , class: "nav-link fa fa-globe headerFont" %>
-    <% else %>
-    <%= link_to_in_li ' '+t(:label_arabic),  { :locale=>'ar' } , class: "nav-link fa fa-globe headerFont" %>
-    <% end %>
-    
-  </li>
+  
 
   <% else %>
   <li class="nav-item dropdown">
     <%= link_to ' '+t(:label_NewAccount), signup_path , class: "nav-link fa fa-user-plus headerFont"  %>
   </li>
 
-          <li class="nav-item dropdown">
-            <a href="javascript:;" class="dropdown-toggle nav-link fa fa-sign-in headerFont" data-toggle="dropdown"><b><%= ' '+t(:label_login) %></b>
-             <span class="caret"></span></a>
-             <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
-              <li>
-               <%= render "layouts/navbar_login" %>
-             </li>
-           </ul>
-         </li>
+  <li class="nav-item dropdown">
+    <a href="javascript:;" class="dropdown-toggle nav-link fa fa-sign-in headerFont" data-toggle="dropdown"><b><%= ' '+t(:label_login) %></b>
+     <span class="caret"></span></a>
+     <ul id="login-dp" class="dropdown-menu dropdown-menu-left">
+      <li>
+       <%= render "layouts/navbar_login" %>
+     </li>
+   </ul>
+ </li>
 
-         <% end %>
-       </ul>
+ <% end %>
 
-
-
-     </div>
-   </nav>
+ <li class="nav-item">
+   <% if I18n.locale == :ar  %>
+   <%= link_to_in_li ' '+t(:label_english),  { :locale=>'en' } , class: "nav-link fa fa-globe headerFont" %>
+   <% else %>
+   <%= link_to_in_li ' '+t(:label_arabic),  { :locale=>'ar' } , class: "nav-link fa fa-globe headerFont" %>
+   <% end %>
+ </li>
+</ul>
+</div>
+</nav>
 

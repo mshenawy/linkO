@@ -62,7 +62,7 @@ class LinksController < ApplicationController
 end
 
 def show
-  @link = Link.find(params[:id])
+  @link = Link.find_by_title(params[:title])
 end
 
   # GET /links/new
@@ -73,7 +73,7 @@ end
 
   # GET /links/1/edit
   def edit
-   @link = Link.find(params[:id])
+   @link = Link.find_by_title(params[:title])
  end
 
  def create
@@ -124,7 +124,7 @@ end
 
 def upvote
 # check if user login
-@link = Link.find(params[:id])
+@link = Link.find_by_title(params[:title])
     # @upvotes = @link.get_upvotes.size
     @liked = false
     if (current_user.voted_as_when_voted_for @link).nil?  
@@ -154,7 +154,7 @@ def upvote
   end
 
   def downvote
-    @link = Link.find(params[:id])
+    @link = Link.find_by_title(params[:title])
     # @upvotes = @link.get_upvotes.size
     @disliked = false
     if (current_user.voted_as_when_voted_for @link).nil?  
@@ -197,14 +197,14 @@ def upvote
       @link = current_user.links.find_by(id: params[:id])
       if @link.nil?
         flash_message :danger ,  "Not authorized to edit this link" 
-        @link = Link.find(params[:id])
+        @link = Link.find_by_title(params[:title])
         redirect_to @link
       end
 
     end
 
     def find_link
-      @link = Link.find(params[:id])
+      @link = Link.find_by_title(params[:title])
     end
 
     # Confirms a logged-in user.

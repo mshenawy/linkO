@@ -19,7 +19,7 @@
 
          <% @categories.each_with_index  do |category, index| %>
          <% if index < @maxFollowList %>
-         <%= link_to_in_li category.arabic_name ,home_path(category: category.name) , class: "nav-link" %>
+         <%= link_to_in_li category.arabic_name ,category , class: "nav-link" %>
          <% end %>
 
          <% end %> 

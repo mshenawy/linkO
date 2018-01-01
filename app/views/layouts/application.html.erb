@@ -11,7 +11,7 @@
   <%= stylesheet_link_tag "application_#{I18n.locale}", media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <div class="header">
-    <% if current_page?(locale: :ar)  %>
+    <% if I18n.locale == :ar  %>
     <%= render "layouts/header_ar" %>
     <% else %>
     <%= render "layouts/header_en" %>
@@ -20,14 +20,14 @@
   </div>
 </head>
 <body>
-  <% if current_page?(locale: :ar)  %>
-  <%= render 'shared/following_list_ar'  %>
-  <% else %>
-  <%= render 'shared/following_list_en'  %>
-  <% end %>
-  
-  <br>
-  <div class="container">
+ <% if I18n.locale == :ar  %>
+ <%= render 'shared/following_list_ar'  %>
+ <% else %>
+ <%= render 'shared/following_list_en'  %>
+ <% end %>
+ 
+ <br>
+ <div class="container">
    <%= render_flash %>
  </div>
  <%= yield %>

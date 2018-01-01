@@ -9,4 +9,8 @@ class Category < ApplicationRecord
 	validates :image , presence: false
 	belongs_to :user , required: true
 
+	def to_param
+		name
+	end
+
 end

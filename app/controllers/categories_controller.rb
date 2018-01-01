@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    category = Category.find(params[:id])
+    category = Category.find_by_name(params[:name])
     @links = Link.where("category_id= ?" , category.id) 
   end
 
@@ -71,7 +71,7 @@ class CategoriesController < ApplicationController
  private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.find_by_name(params[:name])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -81,7 +81,7 @@ class CategoriesController < ApplicationController
 
 
     def correct_user
-      @category = current_user.categories.find_by(id: params[:id])
+      @category = current_user.categories.find_by_name(name: params[:name])
       if @category.nil?
         flash_message :danger ,  "Not authorized to edit this link" 
         redirect_to @category

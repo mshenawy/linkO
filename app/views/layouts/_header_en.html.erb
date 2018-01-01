@@ -72,38 +72,34 @@
 
   </li>
 
-  <li class="nav-item">
-    <% if current_page?(locale: :ar)  %>
-    <%= link_to_in_li ' '+t(:label_english),  { :locale=>'en' } , class: "nav-link fa fa-globe headerFont" %>
-    <% else %>
-    <%= link_to_in_li ' '+t(:label_arabic),  { :locale=>'ar' } , class: "nav-link fa fa-globe headerFont" %>
-    <% end %>
-    
-  </li>
 
   <% else %>
   <li class="nav-item dropdown">
     <%= link_to ' '+t(:label_NewAccount), signup_path , class: "nav-link fa fa-user-plus headerFont"  %>
   </li>
-          <!-- <li class="nav-item dropdown">
-            <%= link_to t(:label_login), login_path , class: "nav-link fa fa-sign-in"  %>
-          </li> -->
 
-          <li class="nav-item dropdown">
-            <a href="javascript:;" class="dropdown-toggle nav-link fa fa-sign-in headerFont" data-toggle="dropdown"><b><%= ' '+t(:label_login) %></b>
-             <span class="caret"></span></a>
-             <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
-              <li>
-               <%= render "layouts/navbar_login" %>
-             </li>
-           </ul>
-         </li>
+  <li class="nav-item dropdown">
+    <a href="javascript:;" class="dropdown-toggle nav-link fa fa-sign-in headerFont" data-toggle="dropdown"><b><%= ' '+t(:label_login) %></b>
+     <span class="caret"></span></a>
+     <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
+      <li>
+       <%= render "layouts/navbar_login" %>
+     </li>
+   </ul>
+ </li>
+ <% end %>
 
-         <% end %>
-       </ul>
+ <li class="nav-item">
+   <% if I18n.locale == :ar  %>
+   <%= link_to_in_li ' '+t(:label_english),  { :locale=>'en' } , class: "nav-link fa fa-globe headerFont" %>
+    <% else %>
+    <%= link_to_in_li ' '+t(:label_arabic),  { :locale=>'ar' } , class: "nav-link fa fa-globe headerFont" %>
+    <% end %>
+ </li>
+</ul>
 
 
 
-     </div>
-   </nav>
+</div>
+</nav>
 

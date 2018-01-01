@@ -9,4 +9,9 @@ class Link < ApplicationRecord
 	# validates :image , presence: false, allow_nil: true
 	validates :image , presence: true
 	searchkick
+
+	def to_param
+		title
+	end
+
 end
