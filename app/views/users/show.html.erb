@@ -4,9 +4,9 @@
         <!-- <h3 class="text-center mb-5">Simple Card</h3> -->
         <div class="card card-01">
           <img class="card-img-top" src="https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?h=350&auto=compress&cs=tinysrgb" alt="Card image cap"><div class="profile-box">
-            <%= image_tag(@user.image.url, alt: 'Image',class: "card-img-top rounded-circle" ) if @user.image? %>
+            <%= cl_image_tag(@user.image_url, alt: 'Image',class: "card-img-top rounded-circle" )  if @user.image? %>
             <%= image_tag('default_profile_image.jpg', alt: 'Image',class: "card-img-top rounded-circle" ) unless @user.image? %>
-            
+           
           </div>
           <div class="card-body text-center">
             <span class="badge-box"><i class="fa fa-check"></i></span>

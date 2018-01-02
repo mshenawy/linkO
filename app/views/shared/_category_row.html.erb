@@ -5,7 +5,7 @@
     <div class="row align-items-center" >
       <div class="col-1.5"> 
         <div class="thumbnail">
-          <%= link_to  image_tag(category.image.url ,class: "thumbnail" ), category if category.image? %>
+          <%= link_to  cl_image_tag(category.image_url ,class: "thumbnail" ), category if category.image? %>
           <%= link_to  image_tag('default-image-category.png',  class: "thumbnail "), category unless category.image? %>
         </div>
       </div>

@@ -33,7 +33,7 @@
                     </th>
                     <td scope="row" rowspan="3" width="10%" class="align-middle">
                       <div style="max-width: 70px;" class="mx-1" >
-                        <%= link_to  image_tag(comment.user.image.url ,class: "card-img-top rounded-circle" ), link.user if comment.user.image? %>
+                        <%= link_to  cl_image_tag(comment.user.image_url ,class: "card-img-top rounded-circle" ), link.user if comment.user.image? %>
                         <%= link_to  image_tag('default-image-link.png',  class: "thumbnail custom-img"), comment.user.url unless comment.user.image? %>
                       </div>
 

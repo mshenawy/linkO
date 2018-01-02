@@ -19,6 +19,7 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
+gem 'cloudinary'
 # gem 'bootstrap', '~> 4.0.0.beta'
 # gem 'jquery-rails'
 

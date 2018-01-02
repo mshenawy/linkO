@@ -36,7 +36,7 @@
                     </th>
                     <td scope="row" rowspan="3" width="10%" class=" align-middle">
                       <div >
-                        <%= link_to  image_tag(link.image.url ,class: "thumbnail custom-img" ), link.url,class: "thumbnail custom-img" if link.image? %>
+                        <%= link_to  cl_image_tag(link.image_url ,class: "thumbnail custom-img" ), link.url,class: "thumbnail custom-img" if link.image? %>
                         <%= link_to  image_tag('default-image-link.png',  class: "thumbnail custom-img"), link.url unless link.image? %>
                       </div>
 

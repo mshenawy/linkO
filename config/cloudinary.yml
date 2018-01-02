@@ -1,0 +1,18 @@
+development:
+  cloud_name: linko
+  api_key: '417512959598981'
+  api_secret: tY5dvyEHIMYGrkMD2UQGHHmI_4E
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: linko
+  api_key: '417512959598981'
+  api_secret: tY5dvyEHIMYGrkMD2UQGHHmI_4E
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: linko
+  api_key: '417512959598981'
+  api_secret: tY5dvyEHIMYGrkMD2UQGHHmI_4E
+  enhance_image_tag: true
+  static_image_support: false
