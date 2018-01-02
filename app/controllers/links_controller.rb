@@ -63,6 +63,8 @@ end
 
 def show
   @link = Link.find_by_title(params[:title])
+  @linkComments = @link.comments.order(:cached_weighted_score => :desc,:created_at => :DESC) 
+  
 end
 
   # GET /links/new
@@ -125,6 +127,7 @@ end
 def upvote
 # check if user login
 @link = Link.find_by_title(params[:title])
+p @link.url
     # @upvotes = @link.get_upvotes.size
     @liked = false
     if (current_user.voted_as_when_voted_for @link).nil?  

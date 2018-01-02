@@ -1,0 +1,14 @@
+.site
+  .services-page 
+    .error-template
+      %h1
+        Oops!
+      %h2
+        404 Not Found
+      .error-details
+        Sorry, an error has occured, Requested page not found!
+        You tried to access '#{@not_found_path}', which is not a valid page.
+      .error-actions
+        %a.button_simple_orange.btn.btn-primary.btn-lg{href: root_path}
+          %span.glyphicon.glyphicon-home
+          Take Me Home

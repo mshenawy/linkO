@@ -13,6 +13,8 @@ module LinkO
     # -- all .rb files in that directory are automatically loaded.
 	config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
 	config.i18n.default_locale = :en
+	config.exceptions_app = self.routes # a Rack Application
+	
   end	
 
   ActionMailer::Base.delivery_method = :smtp

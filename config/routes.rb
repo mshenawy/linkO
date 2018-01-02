@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   # scope "(:locale)", locale:/en|ar/ do
   scope "(:locale)", locale:/#{I18n.available_locales.join("|")}/ do
 
@@ -12,7 +16,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :users, param: :username
   resources :categories, param: :name
-  resources :links, param: :title
+  
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
@@ -30,7 +34,7 @@ Rails.application.routes.draw do
     end
   end
 
-   resources :links do
+   resources :links, param: :title do
     collection do
       get 'search'
     end
@@ -57,8 +61,7 @@ Rails.application.routes.draw do
   root 'links#index', as: 'home'
   root :to => "links#index"
 
-
-  # example of regular Route.
+   # example of regular Route.
   get 'about' => 'pages#about', as: 'about'
   get 'welcome' => 'pages#welcome', as: 'welcome'
   get '/signup', to: 'users#new' 
@@ -66,7 +69,17 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+
+match "/404", :to => "errors#not_found", :via => :all
+match "/500", :to => "errors#internal_server_error", :via => :all
+
+  
 end
 
+
+# at the end of you routes.rb
+# match '*a', :to => 'errors#routing', via: :get
+# get '*unmatched_route', to: 'application#not_found'
+ 
 end
 

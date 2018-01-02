@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
 
   
   def create
-    @link = Link.find(params[:link_id])
+    # @link = Link.find_by(params[:link_id])
+    @link = Link.find_by_title(params[:link_id])
     @comment = @link.comments.new(comment_params)
     @comment.user = current_user
     
@@ -39,7 +40,8 @@ def destroy
 end
 
 def upvote
-  @link = Link.find(params[:link_id])
+  @link = Link.find_by_title(params[:link_title])
+  p @link.url
   @comment = @link.comments.find(params[:id])
   @upvotes = @comment.get_upvotes.size
   @comment.upvote_by current_user
@@ -47,17 +49,16 @@ def upvote
     @user = @link.user
     @user.points += 0.2 
     @user.save    
-
   end
-
+  p 'upvoted well ! 1'
   respond_to do |format|
-    format.html { redirect_back }
-    format.json { head :no_content }
+    format.html
+    format.js 
   end
 end
 
 def downvote
-  @link = Link.find(params[:link_id])
+  @link = Link.find_by_title(params[:link_title])
   @comment = @link.comments.find(params[:id])
   @downvotes = @comment.get_downvotes.size
   @comment.downvote_from current_user
@@ -66,10 +67,9 @@ def downvote
     @user.points -= 0.2 
     @user.save    
   end
-
   respond_to do |format|
-    format.html { redirect_back }
-    format.json { head :no_content }
+    format.html
+    format.js 
   end
 end
 

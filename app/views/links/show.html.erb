@@ -1,34 +1,35 @@
  <% provide(:title, @link.title) %>
-<div class="container" >  
+ <div class="container" >  
 
- <div class="">
-   <div id="link_id_<%= @link.id %>" >
-    <%= render 'shared/link_row' ,link: @link %>
-  </div>
-  
-</div>
+ 	<div class="">
+ 		<div id="link_id_<%= @link.id %>" >
+ 			<%= render 'shared/link_row' ,link: @link %>
+ 		</div>
+
+ 	</div>
 
 
-<h3 class="comments_title">
- <h2><%= t(:label_comments) %> <%= @link.comments.count %> </h2> 
- 
-</h3>
-<div class="commentBox">
- <%= form_for [@link, Comment.new]  do |f| %>
- <div class="field">
-  <%= f.text_area :body, class: "form-control editable" %>
-</div>
-<br>
-<%= f.submit t(:label_addComment) , class: "btn btn-primary" %>
-<% end %>
-</div>
+ 	<h3 class="comments_title">
+ 		<h2><%= t(:label_comments) %> <%= @link.comments.count %> </h2> 
 
-<div id="comments" >
-  <% @link.comments.each do |comment| %>
+ 	</h3>
+ 	<div class="commentBox">
+ 		<%= form_for [@link, Comment.new]  do |f| %>
+ 		<div class="field">
+ 			<%= f.text_area :body, class: "form-control editable" %>
+ 		</div>
+ 		<br>
+ 		<%= f.submit t(:label_addComment) , class: "btn btn-primary" %>
+ 		<% end %>
+ 	</div>
 
-  <%= render 'shared/comment_row' ,comment: comment,link: @link %>
-  <% end %>
-  
-</div>
+ 	<div id="comments" >
+ 		<% @linkComments.each do |comment| %>
+ 		<div id="comment_id_<%= comment.id %>" >
+ 			<%= render 'shared/comment_row' ,comment: comment,link: @link %>
+ 		</div>
+ 		<% end %>
 
-</div>
+ 	</div>
+
+ </div>
