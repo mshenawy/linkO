@@ -197,7 +197,7 @@ p @link.url
 
 
     def correct_user
-      @link = current_user.links.find_by(id: params[:id])
+      @link = current_user.links.find_by_title(params[:title])
       if @link.nil?
         flash_message :danger ,  "Not authorized to edit this link" 
         @link = Link.find_by_title(params[:title])
