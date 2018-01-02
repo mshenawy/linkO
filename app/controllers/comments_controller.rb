@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   
   def create
     # @link = Link.find_by(params[:link_id])
-    @link = Link.find_by_title(params[:link_id])
+    @link = Link.find_by_title(params[:link_title])
     @comment = @link.comments.new(comment_params)
     @comment.user = current_user
     
