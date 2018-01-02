@@ -81,9 +81,9 @@ class CategoriesController < ApplicationController
 
 
     def correct_user
-      @category = current_user.categories.find_by_name(name: params[:name])
+      @category = current_user.categories.find_by_name(params[:name])
       if @category.nil?
-        flash_message :danger ,  "Not authorized to edit this link" 
+        flash_message :danger ,  "Not authorized to edit this category" 
         redirect_to @category
       end
 

@@ -49,7 +49,7 @@
                               <%= link_to link.title, link.url, class: "" %>
                             </b>
                           </h5>
-                          <%= link_to URL_domain(link.url), link.url,:class =>"domain" %>
+                          <%= link_to URL_domain(link.url), 'https://'+URL_domain(link.url),:class =>"domain" %>
                         </div>
 
                       </p>
