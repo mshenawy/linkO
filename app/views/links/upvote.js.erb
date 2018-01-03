@@ -1,2 +1,3 @@
-// alert('upvoted!');
+// alert('upvoted!<%= @link.id %>');
 $("#link_id_<%= @link.id %>").html("<%= escape_javascript(render('shared/link_row' ,link: @link)) %>");
+// alert('upvoted! end');

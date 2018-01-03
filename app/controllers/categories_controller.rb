@@ -11,9 +11,32 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     category = Category.find_by_name(params[:name])
-    @links = Link.where("category_id= ?" , category.id) 
+     @links = recent_posts
   end
 
+def recent_posts
+    @skip = 0
+    category = nil
+    if params[:category].blank?
+      @skip = 1 
+    else 
+      category = Category.find_by(name: params[:category])
+    end
+    
+    if params[:category].present?
+      logger.info(params[:category])
+      links = Link.where("category_id= ?" , category.id) 
+    else
+      links = Link.all
+    end
+    links = links.where("created_at >= ?" , 1.hour.ago.utc) if params[:t] == "hour"
+    links = links.where("created_at >= ?" , 1.day.ago.utc) if params[:t] == "day"
+    links = links.where("created_at >= ?" , 1.week.ago.utc) if params[:t] == "week"
+    links = links.where("created_at >= ?" , 1.month.ago.utc) if params[:t] == "month"
+    links = links.where("created_at >= ?" , 1.year.ago.utc) if params[:t] == "year"
+    links = links.order(:cached_weighted_score => :desc,:created_at => :DESC)  
+
+  end
   # GET /categories/new
   def new
     # @category = Category.new

@@ -28,7 +28,7 @@
 
   <div class="itemsList">
     <% @links.each do |link| %>
-    <div id="link_id_<%= link.id %>" >
+    <div id="link_id_<%= link.id %>" class="link_class" >
       <%= render 'shared/link_row' ,link: link %>
     </div>
     <% end %>

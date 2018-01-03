@@ -37,3 +37,36 @@
 	<% end %>
 </div>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#t').on('change', function(event) {
+      var selected_id = $(this).val();
+          // alert(selected_id);
+          var url= window.location.href; 
+          var res = url.replace('?','&').split("&");
+          var newUrl = res[0];
+          // if(res.length < 2) return;
+
+          var haveQ = false;
+          for(var i =1 ; i<res.length ; i++){
+            var temp = res[i];
+            if(temp.startsWith("t=")){
+              continue;
+            }
+            if (i==1) {
+              newUrl = newUrl+"?"+temp;
+              haveQ = true;
+            }
+            else 
+              newUrl = newUrl+"&"+temp;
+          }
+          if(!haveQ){
+            newUrl = newUrl+"?"+"t="+selected_id;
+          }else newUrl = newUrl+"&"+"t="+selected_id;
+          if(newUrl)
+             window.location = newUrl; // just redirect
+         })
+  });
+</script>

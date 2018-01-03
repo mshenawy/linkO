@@ -11,15 +11,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto edit-align" id="topMenuListId">
+        <ul class="navbar-nav mr--6 " id="topMenuListId">
 
-         <%= link_to_in_li '' , categories_path(), class: "nav-link nav-edit fa fa-pencil-square-o fa-2x" %>
+         <%= link_to_in_li '' , categories_path(), class: "nav-link nav-edit fa fa-pencil-square-o fa-1x edit-align" %>
 
          <%= link_to_in_li t(:label_popular)  ,links_path() , class: "nav-link" %>
 
          <% @categories.each_with_index  do |category, index| %>
          <% if index < @maxFollowList %>
-         <%= link_to_in_li category.arabic_name ,category , class: "nav-link" %>
+         <%= link_to_in_li category.name ,category , class: "nav-link" %>
          <% end %>
 
          <% end %> 

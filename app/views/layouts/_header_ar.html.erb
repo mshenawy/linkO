@@ -1,49 +1,40 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light justify-content-between " style="background-color: #b92b27;">
-  <a class="navbar-brand" href="#">
-    <%= link_to image_tag('favicon.ico',  class: "img-rounded logoImg") ,root_path %>
-  </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between " >
+
+  <%= link_to image_tag('favicon.ico',  class: "navbar-brand img-rounded logoImg") ,root_path %>
+  <%= form_tag search_links_path, method: :get, class: "form-inline col-sm-5 ", role: "search" do %>
+  
+  <div class="input-group input-group-sm  ar_search_field">
+    <%= text_field_tag :search, params[:search], class: "form-control input-group search_input ar_search_field" , placeholder: "ابحث فى LinkO" %>
+    <span class="input-group-btn ">
+      <%= button_tag  ' ', name: nil, class: "btn btn-secondary " do %>
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <% end %>
+    </span>
+  </div>
+  <% end %>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
 
-  <%= form_tag search_links_path, method: :get, class: "form-inline col-sm-5 ", role: "search" do %>
-  <p>
-    <div class="input-group input-group-sm col-sm-8 search_group">
-      <%= text_field_tag :search, params[:search], class: "form-control input-group search_input" , placeholder: "ابحث فى LinkO" %>
-      <span class="input-group-btn ">
-        <%= button_tag  ' ', name: nil, class: "btn btn-secondary " do %>
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <% end %>
-      </span>
-    </div>
-  </p>        
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+    <ul class="navbar-nav ">
+      <li class="nav-item nav-item-custom">
+        <%= link_to t(:label_addLink), new_link_path ,class: "btn btn-success custom-btn-sm mx-1"  %> 
+      </li>
+      <li class="nav-item ">
+        <p>
+         <%= link_to_in_li ' '+t(:label_home) , root_path , class: "nav-link fa fa-newspaper-o headerFont" %>     
+       </p>
 
- <!--  <button class="btn btn-success btn-sm mx-1" type="button"
-  data-toggle="modal" data-target="#exampleModal">Add Link</button>
--->
-<%= link_to t(:label_addLink), new_link_path ,class: "btn btn-success btn-sm mx-1"  %> 
+     </li>
 
-<% end %>
+     <li class="nav-item">
+       <%= link_to_in_li ' '+t(:label_headerAbout) , about_path , class: "nav-link fa fa-question-circle headerFont" %>
+     </li>
 
-
-<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-  <ul class="navbar-nav ">
-
-    <li class="nav-item ">
-      <p>
-
-       <%= link_to_in_li ' '+t(:label_home) , root_path , class: "nav-link fa fa-newspaper-o headerFont" %>     
-
-     </p>
-
-   </li>
-
-   <li class="nav-item">
-     <%= link_to_in_li ' '+t(:label_headerAbout) , about_path , class: "nav-link fa fa-question-circle headerFont" %>
-   </li>
-
-   <% if logged_in? %>
+     <% if logged_in? %>
   <!--  <li class="nav-item">
     <%= link_to_in_li ' '+t(:label_headerNewLink), new_link_path , class: "nav-link fa  fa-link headerFont" %>
   </li> -->

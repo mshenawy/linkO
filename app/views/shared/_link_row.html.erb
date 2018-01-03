@@ -1,132 +1,111 @@
- <p id=""></p>
+<p id=""></p>
 
-        <% @a = "" %>
-        <% @b = "" %>
-        <% unless current_user.nil? %>
-        <% if (current_user.voted_as_when_voted_for link).nil? %>
-        <% @a = "" %>
-        <% @b = "" %>
-        <% elsif current_user.voted_as_when_voted_for link %>
-        <% @a =  "upvoted"   %>
-        <% else %>  
-        <% @b =  "downvoted"   %>
+<% @a = "" %>
+<% @b = "" %>
+<% unless current_user.nil? %>
+<% if (current_user.voted_as_when_voted_for link).nil? %>
+<% @a = "" %>
+<% @b = "" %>
+<% elsif current_user.voted_as_when_voted_for link %>
+<% @a =  "upvoted"   %>
+<% else %>  
+<% @b =  "downvoted"   %>
+<% end %>
+<% end %>
+
+<div class="card">
+  <div class="media m-4">
+   <div class="media-left mx-3">
+     <div class="box">
+      <div class="text-sm-center align-middle">
+        <% unless logged_in? %>
+        <%= link_to notLogin_link_path(link),method: :put, class: "post_upvote "+@a  do %>
+        <i class="fa fa-caret-up fa-2x" aria-hidden="true"></i>
+        <% end %>
+        <% else %>
+        <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote "+@a  do %>
+        <i class="fa fa-caret-up fa-2x" aria-hidden="true"></i>
         <% end %>
         <% end %>
-
-        <!-- <p id="notice"><%= notice %></p>
-        -->
-        <div class="card">
-          <div class="container">
-            <div class="row align-items-center " >
-
-             <div class="col-12 my-4 mx-0">
-              <table class=" table-unbordered ">
-                <tbody>
-                  <tr>
-                    <th scope="row" class="text-sm-center align-middle"  width="5%" >
-                      <% unless logged_in? %>
-                      <%= link_to notLogin_link_path(link),method: :put, class: "post_upvote "+@a  do %>
-                      <i class="fa fa-caret-up fa-2x" aria-hidden="true"></i>
-                      <% end %>
-                      <% else %>
-                      <%= link_to like_link_path(link), method: :put,:remote => true, class: "post_upvote "+@a  do %>
-                      <i class="fa fa-caret-up fa-2x" aria-hidden="true"></i>
-                      <% end %>
-                      <% end %>
-                    </th>
-                    <td scope="row" rowspan="3" width="10%" class=" align-middle">
-                      <div >
-                        <%= link_to  cl_image_tag(link.image_url ,class: "thumbnail custom-img" ), link.url,class: "thumbnail custom-img" if link.image? %>
-                        <%= link_to  image_tag('default-image-link.png',  class: "thumbnail custom-img"), link.url unless link.image? %>
-                      </div>
-
-                    </td>
-                    <td colspan="3" rowspan="2">
-                      <p class="card-text "> 
-                        <div class="link_name">
-                          <h5>
-                            <b>
-                              <%= link_to link.title, link.url, class: "" %>
-                            </b>
-                          </h5>
-                          <%= link_to URL_domain(link.url), 'https://'+URL_domain(link.url),:class =>"domain" %>
-                        </div>
-
-                      </p>
-                      <hr class="my-1">
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row" class="text-sm-center align-middle">
-                      <div class="post_points" title="<%= link_score(link) %>">
-                      <%= number_to_human(link_score(link), :units => {:thousand => "K"},:format =>"%n%u",:precision => 4)  # => "500 K"
-                      %>
-                    </div>
-                  </th>
-
-                </tr>
-
-                <tr>
-                  <th scope="row" class="text-sm-center align-middle">
-
-                   <% unless logged_in? %>
-                   <%= link_to notLogin_link_path(link),method: :put, class: "post_downvote "+@a  do %>
-                   <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>
-                   <% end %>
-                   <% else %>
-                   <%= link_to dislike_link_path(link), method: :put,:remote => true, class: "post_downvote "+@b do %>
-                   <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>          
-                   <% end %>
-                   <% end %>
-                 </th>
-                 <td colspan="3" >
-                  <div class="card-text small">
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
-                        <small ><%= t(:label_by) %>  
-                          <%= link_to link.user.username, link.user %>
-                        </small>
-                      </li>
-                      <li class="list-inline-item">
-                        <small ><%= t(:label_ago) %>   
-                          <%= time_ago_in_words(link.created_at ) %>
-                        </small>
-                      </li>
-                      <li class="list-inline-item">
-                        <small ><%= t(:label_in) %>
-                          <%= link_to link.category.name, link.category %>
-                        </small>
-                      </li>
-
-                      <li class="list-inline-item">
-                        <small ><%= t(:label_in) %>
-                         <%= link_to link_comments(link) , link %>
-                       </small>
-                     </li>
-
-                     <% if link.user == current_user %>
-                     <li class="list-inline-item">
-                       <small >
-                         <%= link_to  t(:label_delete) , link, method: :delete, data: { confirm: 'Are you sure?' } %>
-                       </small>
-                     </li> 
-
-                     <% else %>
-                     <li class="list-inline-item">
-                      <small><%= t(:label_report) %></small>
-                    </li>
-                    <% end %>
-
-                  </ul>
-                </div>
-
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
+      </div>
+       <div style="height: 20px;"></div>
+      <div class="text-sm-center align-middle">
+       <div class="post_points" title="<%= link_score(link) %>">
+          <%= number_to_human(link_score(link), :units => {:thousand => "K"},:format =>"%n%u",:precision => 4)  # => "500 K"
+          %>
+        </div>
+      </div>
+      <div style="height: 20px;"></div>
+      <div class="text-sm-center align-middle">
+        <% unless logged_in? %>
+        <%= link_to notLogin_link_path(link),method: :put, class: "post_downvote "+@a  do %>
+        <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>
+        <% end %>
+        <% else %>
+        <%= link_to dislike_link_path(link), method: :put,:remote => true, class: "post_downvote "+@b do %>
+        <i class="fa fa-caret-down fa-2x" aria-hidden="true"></i>          
+        <% end %>
+        <% end %>
       </div>
     </div>
-
   </div>
-</div>  
+  <div class="media-left">
+    <%= link_to  cl_image_tag(link.image_url ,class: "thumbnail custom-img" ), link.url,class: "thumbnail custom-img" if link.image? %>
+  </div>
+  <div class="media-body mt-4">
+    <h4 class="media-heading"></h4>
+    <div class="link_name">
+      <h5>
+        <b>
+          <%= link_to link.title, link.url, class: "" %>
+        </b>
+      </h5>
+      <%= link_to URL_domain(link.url), 'https://'+URL_domain(link.url),:class =>"domain" %>
+      <hr class="my-1">
+    </div>
+
+    <div class="card-text small">
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <small ><%= t(:label_by) %>  
+            <%= link_to link.user.username, link.user %>
+          </small>
+        </li>
+        <li class="list-inline-item">
+          <small ><%= t(:label_ago) %>   
+            <%= time_ago_in_words(link.created_at ) %>
+          </small>
+        </li>
+        <li class="list-inline-item">
+          <small ><%= t(:label_in) %>
+            <%= link_to link.category.name, link.category %>
+          </small>
+        </li>
+
+        <li class="list-inline-item">
+          <small ><%= t(:label_in) %>
+           <%= link_to link_comments(link) , link %>
+         </small>
+       </li>
+
+       <% if link.user == current_user %>
+       <li class="list-inline-item">
+         <small >
+           <%= link_to  t(:label_delete) , link, method: :delete, data: { confirm: 'Are you sure?' } %>
+         </small>
+       </li> 
+
+       <% else %>
+       <li class="list-inline-item">
+        <small><%= t(:label_report) %></small>
+      </li>
+      <% end %>
+
+    </ul>
+  </div>
+</div>
+</div>
+</div>
+
+
+      

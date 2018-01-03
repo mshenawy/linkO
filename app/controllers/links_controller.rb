@@ -20,13 +20,13 @@ class LinksController < ApplicationController
 
   def search
     p 'Search entered!'
-    if params[:search].present?
-      @q =  '%'+params[:search]+'%'
-      # @links = Link.search(params[:search])
-      @links = Link.where("title LIKE ? or url like ? " , @q , @q)
-    else
-      @links = Link.all
-    end
+    # if params[:search].present?
+    #   @q =  '%'+params[:search]+'%'
+    #   # @links = Link.search(params[:search])
+    #   @links = Link.where("title LIKE ? or url like ? " , @q , @q)
+    # else
+    #   @links = Link.all
+    # end
   end
 
   def recent_posts
