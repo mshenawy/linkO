@@ -19,8 +19,11 @@ class LinksController < ApplicationController
   end
 
   def search
+    p 'Search entered!'
     if params[:search].present?
-      @links = Link.search(params[:search])
+      @q =  '%'+params[:search]+'%'
+      # @links = Link.search(params[:search])
+      @links = Link.where("title LIKE ? or url like ? " , @q , @q)
     else
       @links = Link.all
     end
