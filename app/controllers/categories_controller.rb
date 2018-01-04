@@ -18,8 +18,6 @@ class CategoriesController < ApplicationController
     @skip = 0
     category = Category.find_by_name(params[:name])
     
-    category = Category.find_by(name: params[:category])
-    
     links = Link.where("category_id= ?" , category.id) 
     links = links.where("created_at >= ?" , 1.hour.ago.utc) if params[:t] == "hour"
     links = links.where("created_at >= ?" , 1.day.ago.utc) if params[:t] == "day"
