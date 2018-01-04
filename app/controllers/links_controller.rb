@@ -24,8 +24,10 @@ class LinksController < ApplicationController
       @q =  '%'+params[:search]+'%'
       # @links = Link.search(params[:search])
       @links = Link.where("title LIKE ? or url like ? " , @q , @q)
+      links = links.order(:cached_weighted_score => :desc,:created_at => :DESC)  
     else
       @links = Link.all
+      links = links.order(:cached_weighted_score => :desc,:created_at => :DESC)  
     end
   end
 
