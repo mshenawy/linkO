@@ -7,7 +7,7 @@ class Link < ApplicationRecord
 	has_many :comments
 	belongs_to :category
 	# validates :image , presence: false, allow_nil: true
-	validates :image , presence: true
+	# validates :image , presence: true
 	# searchkick
 
 	def to_param
