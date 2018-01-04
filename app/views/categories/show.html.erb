@@ -3,7 +3,7 @@
 <div id="category_id_<%= @category.id %>" >
 	<%= render 'shared/category_row' ,category: @category , user: @user %>
 </div>
-<% if  @links.count > 0 %>
+<% if  Link.all.count > 0 %>
 
 <div class="menuarea">
 	<div class="spacer">
