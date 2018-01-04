@@ -11,24 +11,16 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     category = Category.find_by_name(params[:name])
-     @links = recent_posts
+    @links = recent_posts
   end
 
-def recent_posts
+  def recent_posts
     @skip = 0
-    category = nil
-    if params[:category].blank?
-      @skip = 1 
-    else 
-      category = Category.find_by(name: params[:category])
-    end
+    category = Category.find_by_name(params[:name])
     
-    if params[:category].present?
-      logger.info(params[:category])
-      links = Link.where("category_id= ?" , category.id) 
-    else
-      links = Link.all
-    end
+    category = Category.find_by(name: params[:category])
+    
+    links = Link.where("category_id= ?" , category.id) 
     links = links.where("created_at >= ?" , 1.hour.ago.utc) if params[:t] == "hour"
     links = links.where("created_at >= ?" , 1.day.ago.utc) if params[:t] == "day"
     links = links.where("created_at >= ?" , 1.week.ago.utc) if params[:t] == "week"
@@ -86,12 +78,12 @@ def recent_posts
     @category.destroy
     respond_to do |format|
       flash_message :success ,  "Category was successfully destroyed." 
-     format.html { redirect_to categories_url  }
-     format.json { head :no_content }
-   end
- end
+      format.html { redirect_to categories_url  }
+      format.json { head :no_content }
+    end
+  end
 
- private
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find_by_name(params[:name])
